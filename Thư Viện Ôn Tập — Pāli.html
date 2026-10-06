@@ -1,0 +1,1052 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Cổ Ngữ Pāli — Sổ Tay Tự Học</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --leaf:#efe4c3;
+  --leaf-dim:#e4d6ac;
+  --ink:#241a10;
+  --ink-soft:#4a392a;
+  --saffron:#c9852a;
+  --saffron-deep:#a5661a;
+  --kasaya:#7c2c2c;
+  --kasaya-soft:#9a4141;
+  --line: rgba(36,26,16,0.16);
+  --paper:#f8f1de;
+  color-scheme: light;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+:root:not([data-theme="light"]) { }
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --leaf:#211a10;
+    --leaf-dim:#2a2114;
+    --ink:#f2e8d2;
+    --ink-soft:#cbb99a;
+    --saffron:#e0a94c;
+    --saffron-deep:#f0bd6a;
+    --kasaya:#d98080;
+    --kasaya-soft:#e39a9a;
+    --line: rgba(242,232,210,0.16);
+    --paper:#2a2114;
+  }
+}
+:root[data-theme="dark"]{
+  --leaf:#211a10;
+  --leaf-dim:#2a2114;
+  --ink:#f2e8d2;
+  --ink-soft:#cbb99a;
+  --saffron:#e0a94c;
+  --saffron-deep:#f0bd6a;
+  --kasaya:#d98080;
+  --kasaya-soft:#e39a9a;
+  --line: rgba(242,232,210,0.16);
+  --paper:#2a2114;
+}
+*{box-sizing:border-box;}
+html{scroll-padding-top: env(safe-area-inset-top, 0px);}
+html,body{height:100%;}
+body{
+  margin:0;
+  background:var(--leaf);
+  color:var(--ink);
+  font-family:'Inter',sans-serif;
+  -webkit-font-smoothing:antialiased;
+}
+.pali, .viet-serif, h1, h2, h3, .card-front, .card-back, .verse{
+  font-family:'Noto Serif', serif;
+}
+a{color:inherit;}
+
+/* ---------- Shell ---------- */
+.shell{
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 0 20px 60px;
+}
+header.top{
+  padding: 28px 20px 18px;
+  padding-top: calc(28px + env(safe-area-inset-top, 0px));
+  display:flex;
+  align-items:baseline;
+  justify-content:space-between;
+  gap:16px;
+  flex-wrap:wrap;
+  border-bottom: 1px solid var(--line);
+  max-width: 980px;
+  margin: 0 auto;
+}
+header.top .mark{
+  font-family:'Noto Serif',serif;
+  font-weight:700;
+  font-size: 1.55rem;
+  letter-spacing:0.01em;
+}
+header.top .mark small{
+  display:block;
+  font-family:'Inter',sans-serif;
+  font-weight:500;
+  font-size: 0.72rem;
+  color: var(--ink-soft);
+  letter-spacing: 0.04em;
+  margin-top: 2px;
+}
+nav.tabs{
+  display:flex;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+nav.tabs button{
+  font-family:'Inter',sans-serif;
+  font-size: 0.86rem;
+  font-weight: 600;
+  padding: 9px 15px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--ink-soft);
+  cursor:pointer;
+  transition: all .15s ease;
+}
+nav.tabs button:hover{ color: var(--ink); }
+nav.tabs button.active{
+  background: var(--saffron);
+  color: #1c1206;
+  border-color: var(--saffron-deep);
+}
+nav.tabs button:focus-visible, button:focus-visible, .flashcard:focus-visible{
+  outline: 2px solid var(--kasaya);
+  outline-offset: 2px;
+}
+
+section.view{ display:none; padding-top: 30px; }
+section.view.active{ display:block; }
+
+h1.page-title{
+  font-size: clamp(1.7rem, 4vw, 2.4rem);
+  font-weight:600;
+  margin: 0 0 6px;
+  line-height:1.15;
+}
+p.lede{
+  color: var(--ink-soft);
+  font-size: 1rem;
+  max-width: 640px;
+  margin: 0 0 28px;
+  line-height:1.55;
+}
+
+/* ---------- Roadmap ---------- */
+.roadmap-list{
+  border-top: 1px solid var(--line);
+}
+.road-step{
+  display:grid;
+  grid-template-columns: 78px 1fr;
+  gap: 18px;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--line);
+}
+.road-step .stage{
+  font-family:'Noto Serif',serif;
+  font-size: 0.82rem;
+  color: var(--saffron-deep);
+  padding-top: 3px;
+}
+.road-step h3{
+  margin: 0 0 6px;
+  font-size: 1.12rem;
+  font-weight:600;
+}
+.road-step p{
+  margin: 0 0 6px;
+  color: var(--ink-soft);
+  font-size: 0.94rem;
+  line-height:1.55;
+}
+.road-step ul{
+  margin: 8px 0 0;
+  padding-left: 18px;
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+  line-height:1.7;
+}
+.note-box{
+  margin-top: 30px;
+  padding: 18px 20px;
+  background: var(--paper);
+  border-left: 3px solid var(--kasaya);
+  border-radius: 2px;
+  font-size: 0.92rem;
+  line-height:1.6;
+  color: var(--ink-soft);
+}
+.note-box strong{ color: var(--ink); }
+
+/* ---------- Grammar ---------- */
+.gram-block{ margin-bottom: 40px; }
+.gram-block h2{
+  font-size: 1.25rem;
+  font-weight:600;
+  margin: 0 0 4px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.gram-block .sub{
+  color: var(--ink-soft);
+  font-size: 0.88rem;
+  margin: 0 0 14px;
+}
+.table-wrap{
+  overflow-x:auto;
+  border: 1px solid var(--line);
+  border-radius: 3px;
+}
+table.declension{
+  border-collapse: collapse;
+  width:100%;
+  min-width: 480px;
+  font-size: 0.92rem;
+}
+table.declension th, table.declension td{
+  padding: 10px 14px;
+  text-align:left;
+  border-bottom: 1px solid var(--line);
+  white-space: nowrap;
+}
+table.declension th{
+  background: var(--leaf-dim);
+  font-family:'Inter',sans-serif;
+  font-weight:600;
+  font-size: 0.78rem;
+  color: var(--ink-soft);
+}
+table.declension td.case-name{ color: var(--ink-soft); font-size:0.85rem; }
+table.declension td.pali{ font-family:'Noto Serif',serif; }
+table.declension tr:last-child td{ border-bottom:none; }
+.example-line{
+  margin-top: 14px;
+  padding: 14px 16px;
+  background: var(--paper);
+  border-radius: 3px;
+  font-size: 0.94rem;
+  line-height:1.7;
+}
+.example-line .p{ font-family:'Noto Serif',serif; }
+.example-line .v{ color: var(--ink-soft); }
+
+/* ---------- Vocab / flashcards ---------- */
+.vocab-toolbar{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  align-items:center;
+  margin-bottom: 22px;
+}
+select, .btn{
+  font-family:'Inter',sans-serif;
+  font-size: 0.86rem;
+  font-weight:600;
+  padding: 9px 14px;
+  border-radius: 6px;
+  border: 1px solid var(--line);
+  background: var(--paper);
+  color: var(--ink);
+  cursor:pointer;
+}
+.btn.primary{ background: var(--saffron); color:#1c1206; border-color:var(--saffron-deep); }
+.btn.ghost{ background:transparent; }
+.stat-pill{
+  font-size: 0.8rem;
+  color: var(--ink-soft);
+  padding: 8px 4px;
+}
+.deck-wrap{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap: 20px;
+}
+.flashcard{
+  width:100%;
+  max-width: 480px;
+  aspect-ratio: 4/3;
+  perspective: 1200px;
+  cursor:pointer;
+}
+.flashcard-inner{
+  position:relative;
+  width:100%; height:100%;
+  transition: transform .5s cubic-bezier(.4,.2,.2,1);
+  transform-style:preserve-3d;
+}
+.flashcard.flipped .flashcard-inner{ transform: rotateY(180deg); }
+.card-front, .card-back{
+  position:absolute; inset:0;
+  backface-visibility:hidden;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  background: var(--paper);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding: 26px;
+  box-shadow: 0 1px 0 var(--line);
+}
+.card-back{ transform: rotateY(180deg); }
+.card-front .tag, .card-back .tag{
+  font-family:'Inter',sans-serif;
+  font-size:0.72rem;
+  font-weight:600;
+  color: var(--saffron-deep);
+  margin-bottom: 14px;
+}
+.card-front .pali-word{ font-size: clamp(1.6rem,5vw,2.4rem); font-weight:600; }
+.card-front .pos{ margin-top:10px; font-family:'Inter',sans-serif; font-size:0.82rem; color:var(--ink-soft); }
+.card-front .hint{ margin-top:18px; font-family:'Inter',sans-serif; font-size:0.75rem; color:var(--ink-soft); }
+.card-back .vi{ font-size: 1.3rem; font-weight:600; margin-bottom:8px; }
+.card-back .en{ font-size: 0.95rem; color:var(--ink-soft); margin-bottom:14px; font-style:italic; }
+.card-back .root{ font-size: 0.85rem; color:var(--ink-soft); border-top:1px solid var(--line); padding-top:12px; max-width:340px; }
+.deck-controls{
+  display:flex;
+  gap:12px;
+  align-items:center;
+  flex-wrap:wrap;
+  justify-content:center;
+}
+.grade-btns{ display:flex; gap:10px; }
+.grade-btns button{
+  font-family:'Inter',sans-serif;
+  font-weight:600;
+  font-size:0.85rem;
+  padding: 10px 18px;
+  border-radius: 8px;
+  border:1px solid var(--line);
+  cursor:pointer;
+  background: var(--paper);
+  color:var(--ink);
+}
+.grade-btns button.know{ border-color: #4c7a4c; color:#3c6b3c; }
+.grade-btns button.review{ border-color: var(--kasaya); color: var(--kasaya); }
+:root[data-theme="dark"] .grade-btns button.know, @media (prefers-color-scheme:dark){ .grade-btns button.know{ color:#8fc98f; } }
+.progress-track{
+  width:100%; max-width:480px;
+  height:4px;
+  background: var(--line);
+  border-radius:2px;
+  overflow:hidden;
+}
+.progress-fill{ height:100%; background:var(--saffron); width:0%; transition: width .3s ease; }
+.done-msg{ text-align:center; color:var(--ink-soft); font-size:0.95rem; padding: 40px 0; }
+
+/* ---------- Texts ---------- */
+.text-nav{
+  display:flex; flex-wrap:wrap; gap:8px; margin-bottom:26px;
+}
+.text-nav button{
+  font-family:'Inter',sans-serif; font-size:0.82rem; font-weight:600;
+  padding: 7px 13px; border-radius:999px; border:1px solid var(--line);
+  background:transparent; color:var(--ink-soft); cursor:pointer;
+}
+.text-nav button.active{ background:var(--kasaya); color:#fdf2f2; border-color:var(--kasaya); }
+.verse-block{ display:none; }
+.verse-block.active{ display:block; }
+.verse-item{
+  padding: 20px 0;
+  border-bottom: 1px solid var(--line);
+}
+.verse-item:last-child{ border-bottom:none; }
+.verse-item .p{
+  font-size: 1.15rem;
+  line-height:1.6;
+  margin-bottom:8px;
+}
+.verse-item .v{
+  color: var(--ink-soft);
+  font-size:0.95rem;
+  margin-bottom:10px;
+  font-style:italic;
+}
+.verse-item details{
+  font-size: 0.88rem;
+  color: var(--ink-soft);
+  line-height:1.7;
+}
+.verse-item summary{
+  cursor:pointer;
+  font-family:'Inter',sans-serif;
+  font-weight:600;
+  font-size:0.8rem;
+  color: var(--saffron-deep);
+  margin-bottom: 6px;
+}
+
+footer.foot{
+  max-width:980px; margin:40px auto 0; padding: 20px;
+  border-top:1px solid var(--line);
+  color: var(--ink-soft);
+  font-size: 0.82rem;
+  text-align:center;
+}
+
+@media (max-width: 640px){
+  .road-step{ grid-template-columns: 1fr; }
+  table.declension{ font-size:0.84rem; }
+}
+
+/* ---------- Portal shell ---------- */
+header.top{ position:relative; }
+header.top .crumb{
+  font-family:'Inter',sans-serif; font-size:0.85rem; color:var(--ink-soft);
+}
+header.top .crumb button{
+  background:none; border:none; color:var(--ink-soft); font-family:'Inter',sans-serif;
+  font-size:0.85rem; cursor:pointer; padding:0;
+}
+header.top .crumb button:hover{ color:var(--saffron-deep); text-decoration:underline; }
+header.top .crumb .sep{ margin:0 6px; opacity:0.5; }
+
+#home-screen{ max-width:980px; margin:0 auto; padding: 50px 20px 60px; }
+.hero{ text-align:center; padding: 20px 10px 44px; }
+.hero h1{ font-family:'Noto Serif',serif; font-size:clamp(1.8rem,5vw,2.6rem); font-weight:700; margin:0 0 10px; }
+.hero p{ color:var(--ink-soft); max-width:520px; margin:0 auto; line-height:1.6; }
+.course-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:18px; }
+.course-card{
+  background:var(--paper); border:1px solid var(--line); border-radius:12px; padding:22px;
+  cursor:pointer; transition:transform .15s ease, border-color .15s ease; text-align:left;
+}
+.course-card:hover{ transform:translateY(-3px); border-color:var(--saffron); }
+.course-card .badge{ font-family:'Inter',sans-serif; font-size:0.72rem; font-weight:700; color:var(--saffron-deep); text-transform:uppercase; letter-spacing:.04em; }
+.course-card h3{ margin:8px 0 6px; font-size:1.25rem; }
+.course-card p{ color:var(--ink-soft); font-size:0.9rem; margin:0 0 14px; line-height:1.5; }
+.course-card .meta{ font-family:'Inter',sans-serif; font-size:0.8rem; color:var(--ink-soft); display:flex; gap:14px; }
+
+#course-screen{ display:none; max-width:1180px; margin:0 auto; padding: 24px 20px 60px; }
+.course-layout{ display:grid; grid-template-columns:230px 1fr; gap:36px; align-items:start; }
+aside.sidebar{ position:sticky; top:18px; border-right:1px solid var(--line); padding-right:20px; }
+aside.sidebar .group-label{ font-family:'Inter',sans-serif; font-size:0.72rem; font-weight:700; color:var(--ink-soft); text-transform:uppercase; letter-spacing:.05em; margin:18px 0 8px; }
+aside.sidebar .group-label:first-child{ margin-top:0; }
+.side-link{
+  display:flex; align-items:center; justify-content:space-between; gap:8px;
+  width:100%; text-align:left; font-family:'Inter',sans-serif; font-size:0.9rem; font-weight:600;
+  padding:9px 10px; border-radius:7px; border:none; background:none; color:var(--ink-soft); cursor:pointer;
+}
+.side-link:hover{ background:var(--leaf-dim); color:var(--ink); }
+.side-link.active{ background:var(--kasaya); color:#fdf2f2; }
+.side-link.locked{ opacity:0.5; cursor:default; }
+.side-link.locked:hover{ background:none; color:var(--ink-soft); }
+.side-link .tag-sm{ font-size:0.68rem; font-weight:600; }
+.course-main .lesson-tabs{ display:flex; gap:4px; flex-wrap:wrap; margin-bottom:10px; border-bottom:1px solid var(--line); padding-bottom:10px; }
+.course-main .lesson-tabs button{
+  font-family:'Inter',sans-serif; font-size:0.82rem; font-weight:600; padding:7px 13px; border-radius:7px;
+  border:1px solid transparent; background:transparent; color:var(--ink-soft); cursor:pointer;
+}
+.course-main .lesson-tabs button.active{ background:var(--saffron); color:#1c1206; border-color:var(--saffron-deep); }
+
+.res-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(210px,1fr)); gap:14px; margin-top:16px; }
+.res-card{ background:var(--paper); border:1px solid var(--line); border-radius:10px; padding:18px; }
+.res-card h4{ margin:0 0 6px; font-size:1rem; }
+.res-card p{ color:var(--ink-soft); font-size:0.85rem; margin:0 0 12px; line-height:1.5; }
+.res-card button{ width:100%; }
+.res-card .ok{ color:#4c7a4c; font-size:0.8rem; font-weight:600; }
+@media (max-width:760px){
+  .course-layout{ grid-template-columns:1fr; }
+  aside.sidebar{ position:static; border-right:none; border-bottom:1px solid var(--line); padding-right:0; padding-bottom:14px; display:flex; flex-wrap:wrap; gap:4px; }
+  aside.sidebar .group-label{ width:100%; margin:10px 0 4px; }
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="crumb" id="crumb">
+    <button id="crumb-home">Trang chủ</button>
+  </div>
+</header>
+
+<div id="home-screen">
+  <div class="hero">
+    <h1>Thư viện ôn tập</h1>
+    <p>Phật Học Từ Xa — Khoá 10. Chọn môn học để vào bài giảng, ngữ pháp, từ vựng và tài liệu ôn tập.</p>
+  </div>
+  <div class="course-grid">
+    <button class="course-card" id="open-pali-course">
+      <div class="badge">Học kỳ 4</div>
+      <h3>Cổ Ngữ Pāli</h3>
+      <p>GV. NS TS TN. Diệu Hiếu — đại từ liên hệ "ya", biến cách, các đoạn kinh phân tích ngữ pháp.</p>
+      <div class="meta"><span>1 bài đã có · thêm khi cập nhật</span></div>
+    </button>
+  </div>
+</div>
+
+<div id="course-screen">
+  <div class="course-layout">
+    <aside class="sidebar">
+      <div class="group-label">Bài học</div>
+      <button class="side-link lesson-link active" data-lesson="20">Bài 20 <span class="tag-sm">●</span></button>
+      <button class="side-link locked" disabled>Bài 21 <span class="tag-sm">sắp có</span></button>
+      <div class="group-label">Chung cả môn</div>
+      <button class="side-link group-link" data-view="roadmap">Lộ trình học</button>
+      <button class="side-link group-link" data-view="resources">Tài liệu ôn tập</button>
+    </aside>
+    <div class="course-main">
+      <div class="lesson-tabs" id="lesson-tabs">
+        <button data-view="lecture" class="active">Bài giảng</button>
+        <button data-view="grammar">Ngữ pháp</button>
+        <button data-view="vocab">Từ vựng</button>
+        <button data-view="texts">Văn bản</button>
+      </div>
+
+      <!-- LECTURE NOTES -->
+  <section class="view active" id="view-lecture">
+    <h1 class="page-title">Bài 20: Đại từ liên hệ "Ya"</h1>
+
+    <div class="gram-block">
+      <h2>Quy tắc chính</h2>
+      <ul style="margin:0 0 16px; padding-left:18px; line-height:1.8;">
+        <li>"Ya" = ai, người nào, cái nào. Luôn đi cặp với đại từ chỉ định: <span class="pali">so</span> (nam), <span class="pali">taṃ</span> (trung), <span class="pali">sā</span> (nữ).</li>
+        <li>Cặp cơ bản: <span class="pali">yo…so</span> (số ít), <span class="pali">ye…te</span> (số nhiều) — "người nào… thì người đó…".</li>
+        <li>Khi đi cùng đại từ nhân xưng, hai vế <strong>không bắt buộc cùng cách</strong>, chỉ cần cùng số.</li>
+      </ul>
+      <div class="example-line">
+        <div class="p">Yo puññaṃ karoti, so sukhaṃ labhati.</div>
+        <div class="v">Người nào tạo phước thì người đó có hạnh phúc.</div>
+      </div>
+      <div class="example-line">
+        <div class="p">Yo dhammaṃ jānāti, tamhā dhammo uggaṇhitabbo.</div>
+        <div class="v">Pháp đáng được học từ người biết Pháp. ("Yo" chủ cách, "tamhā" xuất xứ cách — khác cách, cùng số ít.)</div>
+      </div>
+      <div class="example-line">
+        <div class="p">Ye dhammā hetuppabhavā, tesaṃ hetuṃ tathāgato āha; tesañca yo nirodho, evaṃvādī mahāsamaṇo.</div>
+        <div class="v">Pháp sanh lên do nhân, Như Lai giảng nhân ấy; nhân diệt thời Pháp diệt, đại Sa-môn nói vậy. (Vinaya Mahāvagga)</div>
+      </div>
+    </div>
+
+    <div class="gram-block">
+      <h2>Bảng biến cách</h2>
+      <div class="table-wrap">
+        <table class="declension">
+          <tr><th>Cách</th><th>Số ít</th><th>Số nhiều</th></tr>
+          <tr><td class="case-name">1. Chủ cách</td><td class="pali">yo…so</td><td class="pali">ye…te</td></tr>
+          <tr><td class="case-name">2. Đối cách</td><td class="pali">yaṃ…taṃ</td><td class="pali">ye…te</td></tr>
+          <tr><td class="case-name">3. Sử dụng cách</td><td class="pali">yena…tena</td><td class="pali">yehi…tehi</td></tr>
+          <tr><td class="case-name">4. Chỉ định cách</td><td class="pali">yassa…tassa</td><td class="pali">yesaṃ…tesaṃ</td></tr>
+          <tr><td class="case-name">5. Xuất xứ cách</td><td class="pali">yasmā, yamhā…tasmā, tamhā</td><td class="pali">yehi…tehi</td></tr>
+          <tr><td class="case-name">6. Sở thuộc cách</td><td class="pali">yassa…tassa</td><td class="pali">yesaṃ…tesaṃ</td></tr>
+          <tr><td class="case-name">7. Định sở cách</td><td class="pali">yasmiṃ, yamhi…tasmiṃ, tamhi</td><td class="pali">yesu…tesu</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="gram-block">
+      <h2>Từ vựng trọng tâm</h2>
+      <div class="table-wrap">
+        <table class="declension">
+          <tr><th>Pāli</th><th>Nghĩa</th></tr>
+          <tr><td class="pali">yo…so / yaṃ…taṃ / yā…sā</td><td>ai… thì người đó / cái nào… thì cái đó</td></tr>
+          <tr><td class="pali">bhojanaṃ</td><td>thức ăn</td></tr>
+          <tr><td class="pali">vihāra</td><td>tịnh xá, tu viện</td></tr>
+          <tr><td class="pali">cīvara</td><td>y phục</td></tr>
+          <tr><td class="pali">ācariya / sisso</td><td>thầy / học trò</td></tr>
+          <tr><td class="pali">hetu / nirodha</td><td>nhân / sự diệt</td></tr>
+          <tr><td class="pali">tathāgato</td><td>Như Lai</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="gram-block">
+      <h2>Bài tập (ứng dụng 8 cách)</h2>
+      <div id="lecture-exercises"></div>
+    </div>
+  </section>
+
+  <!-- ROADMAP -->
+  <section class="view" id="view-roadmap">
+    <h1 class="page-title">Lộ trình</h1>
+    <div class="roadmap-list">
+      <div class="road-step" style="grid-template-columns:1fr;">
+        <ul style="margin:0; padding-left:18px; line-height:1.9;">
+          <li>Thuộc bảng biến cách <span class="pali">yo/yaṃ/yā</span> ở cả 7 cách.</li>
+          <li>Dịch lại 7 câu bài tập "Yo…so" không xem đáp án.</li>
+          <li>Học từ vựng theo gốc từ (√) thay vì học rời từng từ.</li>
+          <li>Đọc lại các đoạn kinh ở tab Văn bản để thấy "ya" dùng trong văn bản thật.</li>
+          <li>Ôn "Yāni kānici / Ye keci" trong Bhaya Sutta — cầu nối sang đại từ bất định Bài 21.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- GRAMMAR -->
+  <section class="view" id="view-grammar">
+    <h1 class="page-title">Ngữ pháp — Đại từ liên hệ "Ya"</h1>
+    <p class="lede">Trọng tâm Bài 20. "Ya" biến cách song song với "ta" (so/taṃ/sā) và gần như luôn xuất hiện thành cặp: yo…so, yaṃ…taṃ, yā…sā.</p>
+
+    <div class="gram-block">
+      <h2>Yo (nam tính) — Ai … thì người đó…</h2>
+      <p class="sub">Biến cách theo cặp yo…so, ye…te</p>
+      <div class="table-wrap">
+        <table class="declension">
+          <tr><th>Cách</th><th>Số ít</th><th>Số nhiều</th></tr>
+          <tr><td class="case-name">1. Chủ cách</td><td class="pali">yo…so</td><td class="pali">ye…te</td></tr>
+          <tr><td class="case-name">2. Đối cách</td><td class="pali">yaṃ…taṃ</td><td class="pali">ye…te</td></tr>
+          <tr><td class="case-name">3. Sử dụng cách</td><td class="pali">yena…tena</td><td class="pali">yehi…tehi</td></tr>
+          <tr><td class="case-name">4. Chỉ định cách</td><td class="pali">yassa…tassa</td><td class="pali">yesaṃ…tesaṃ</td></tr>
+          <tr><td class="case-name">5. Xuất xứ cách</td><td class="pali">yasmā, yamhā…tasmā, tamhā</td><td class="pali">yehi…tehi</td></tr>
+          <tr><td class="case-name">6. Sở thuộc cách</td><td class="pali">yassa…tassa</td><td class="pali">yesaṃ…tesaṃ</td></tr>
+          <tr><td class="case-name">7. Định sở cách</td><td class="pali">yasmiṃ, yamhi…tasmiṃ, tamhi</td><td class="pali">yesu…tesu</td></tr>
+        </table>
+      </div>
+      <div class="example-line">
+        <div class="p">Yo puññaṃ karoti, so sukhaṃ labhati.</div>
+        <div class="v">Người nào tạo phước, người đó có hạnh phúc. (One who does merit gets happiness.)</div>
+      </div>
+    </div>
+
+    <div class="gram-block">
+      <h2>Yaṃ (trung tính)</h2>
+      <div class="table-wrap">
+        <table class="declension">
+          <tr><th>Cách</th><th>Số ít</th><th>Số nhiều</th></tr>
+          <tr><td class="case-name">1–2</td><td class="pali">yaṃ…taṃ</td><td class="pali">ye…te / yāni…tāni</td></tr>
+          <tr><td class="case-name">3–7</td><td class="pali">giống "yo" nam tính</td><td class="pali">giống "yo" nam tính</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="gram-block">
+      <h2>Yā (nữ tính)</h2>
+      <div class="table-wrap">
+        <table class="declension">
+          <tr><th>Cách</th><th>Số ít</th><th>Số nhiều</th></tr>
+          <tr><td class="case-name">1. Chủ cách</td><td class="pali">yā…sā</td><td class="pali">yā…tā / yāyo…tāyo</td></tr>
+          <tr><td class="case-name">2. Đối cách</td><td class="pali">yaṃ…taṃ</td><td class="pali">yā…tā / yāyo…tāyo</td></tr>
+          <tr><td class="case-name">3. Sử dụng cách</td><td class="pali">yāya…tāya</td><td class="pali">yāhi…tāhi</td></tr>
+          <tr><td class="case-name">4. Chỉ định cách</td><td class="pali">yāya, yassā…tāya, tassā</td><td class="pali">yāsaṃ…tāsaṃ</td></tr>
+          <tr><td class="case-name">5. Xuất xứ cách</td><td class="pali">yāya…tāya</td><td class="pali">yāhi…tāhi</td></tr>
+          <tr><td class="case-name">6. Sở thuộc cách</td><td class="pali">yāya, yassā…tāya, tassā</td><td class="pali">yāsaṃ…tāsaṃ</td></tr>
+          <tr><td class="case-name">7. Định sở cách</td><td class="pali">yāyaṃ, yassaṃ…tāyaṃ, tassaṃ</td><td class="pali">yāsu…tāsu</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="gram-block">
+      <h2>3 điểm dễ nhầm</h2>
+      <div class="table-wrap" style="border:none;">
+        <div class="example-line" style="margin-top:0;">
+          <strong>1. Không bắt buộc cùng cách, chỉ cần cùng số.</strong><br>
+          <span class="v">Yo dhammaṃ jānāti, tamhā dhammo uggaṇhitabbo. (Yo = chủ cách, tamhā = xuất xứ cách — khác cách nhau, nhưng cùng số ít → vẫn đúng ngữ pháp.)</span>
+        </div>
+        <div class="example-line">
+          <strong>2. Trạng từ (adverb) không hoà hợp số/ngôi với động từ.</strong><br>
+          <span class="v">So sādhukaṃ kammaṃ karoti / Te sādhukaṃ kammaṃ karonti — "sādhukaṃ" (trạng từ, đối cách trung tính) giữ nguyên dù chủ ngữ số ít hay số nhiều.</span>
+        </div>
+        <div class="example-line">
+          <strong>3. So sánh bằng "iva/va": chủ từ trong vế so sánh luôn ở Chủ cách.</strong><br>
+          <span class="v">Aggihuttaṃ-va brāhmaṇo (= brāhmaṇo aggihuttaṃ namassati iva) — "brāhmaṇo" là chủ cách vì nó là chủ từ của động từ ngầm hiểu trong câu ví dụ.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VOCAB -->
+  <section class="view" id="view-vocab">
+    <h1 class="page-title">Từ vựng theo gốc từ</h1>
+    <p class="lede">Bấm vào thẻ để lật, xem nghĩa và cách phân tích gốc từ (etymology). Việc tự đánh giá "đã thuộc / cần ôn" chỉ lưu trên máy này của bạn.</p>
+
+    <div class="vocab-toolbar">
+      <select id="vocab-filter"></select>
+      <button class="btn ghost" id="vocab-shuffle">Xáo bài</button>
+      <button class="btn ghost" id="vocab-reset">Xoá tiến trình</button>
+      <span class="stat-pill" id="vocab-stat"></span>
+    </div>
+
+    <div class="deck-wrap">
+      <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
+      <div class="flashcard" id="flashcard" tabindex="0" role="button" aria-label="Lật thẻ">
+        <div class="flashcard-inner">
+          <div class="card-front">
+            <div class="tag" id="card-tag">—</div>
+            <div class="pali-word" id="card-pali">—</div>
+            <div class="pos" id="card-pos">—</div>
+            <div class="hint">bấm để xem nghĩa</div>
+          </div>
+          <div class="card-back">
+            <div class="vi" id="card-vi">—</div>
+            <div class="en" id="card-en">—</div>
+            <div class="root" id="card-root">—</div>
+          </div>
+        </div>
+      </div>
+      <div id="done-msg" class="done-msg" style="display:none;">Đã ôn hết bộ thẻ này! Bấm "Xáo bài" để ôn lại.</div>
+      <div class="deck-controls">
+        <button class="btn ghost" id="prev-card">← Trước</button>
+        <div class="grade-btns">
+          <button class="review" id="mark-review">Cần ôn lại</button>
+          <button class="know" id="mark-know">Đã thuộc</button>
+        </div>
+        <button class="btn ghost" id="next-card">Sau →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEXTS -->
+  <section class="view" id="view-texts">
+    <h1 class="page-title">Văn bản có phân tích</h1>
+    <p class="lede">Các đoạn kệ và đoạn kinh trong tài liệu của bạn, giữ nguyên phần phân tích ngữ pháp — dùng để đọc đối chiếu.</p>
+
+    <div class="text-nav" id="text-nav"></div>
+    <div id="text-content"></div>
+  </section>
+
+  <!-- RESOURCES -->
+  <section class="view" id="view-resources">
+    <h1 class="page-title">Tài liệu ôn tập</h1>
+    <p class="lede">Cùng một nội dung, nhiều định dạng — chọn cái phù hợp với cách bạn muốn ôn.</p>
+    <div class="res-grid">
+      <div class="res-card">
+        <h4>Học trên web</h4>
+        <p>Bài giảng, ngữ pháp, từ vựng (thẻ ghi nhớ) và văn bản phân tích — xem ngay trong trang này.</p>
+        <button class="btn primary" id="res-goweb">Vào học</button>
+      </div>
+      <div class="res-card">
+        <h4>Đề cương Word (in ấn)</h4>
+        <p>Đề cương ôn thi giữa kỳ dạng Word, font có dấu Pāli đầy đủ — tải về để in hoặc chỉnh sửa.</p>
+        <button class="btn primary" id="res-download">Tải file .docx</button>
+        <div class="ok" id="res-download-ok" style="display:none;margin-top:8px;">Đã lưu.</div>
+      </div>
+      <div class="res-card">
+        <h4>Bản in nhanh từ trình duyệt</h4>
+        <p>In trực tiếp phần Bài giảng + Ngữ pháp đang mở, không cần tải file.</p>
+        <button class="btn ghost" id="res-print">In trang hiện tại</button>
+      </div>
+      <div class="res-card">
+        <h4>Thẻ ghi nhớ (ôn nhanh)</h4>
+        <p>70 thẻ từ vựng, lật xem nghĩa + gốc từ, tự đánh dấu "đã thuộc".</p>
+        <button class="btn ghost" id="res-goflash">Mở bộ thẻ</button>
+      </div>
+    </div>
+    <div class="note-box" style="margin-top:26px;">
+      Chưa có bản Canva — nội dung chủ yếu là bảng/văn bản nên mình ưu tiên web + Word trước. Nếu bạn cần thiết kế dạng poster/infographic để trình bày, nói mình biết sẽ làm riêng bản đó.
+    </div>
+  </section>
+
+    </div>
+  </div>
+</div>
+
+<footer class="foot">Biên soạn lại từ tài liệu Cổ Ngữ Pāli — Phật Học Từ Xa Khoá 10, GV. NS TS TN. Diệu Hiếu. Dữ liệu học tập lưu trong bộ nhớ trình duyệt của bạn, không gửi đi đâu khác.</footer>
+
+<script>
+/* ---------------- Navigation: home -> course -> lesson ---------------- */
+function showView(name){
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+  document.getElementById('view-'+name).classList.add('active');
+  document.querySelectorAll('.lesson-tabs button, .group-link').forEach(b=>b.classList.remove('active'));
+  const match = document.querySelector('.lesson-tabs button[data-view="'+name+'"], .group-link[data-view="'+name+'"]');
+  if(match) match.classList.add('active');
+  document.getElementById('crumb').innerHTML =
+    '<button id="crumb-home-2">Trang chủ</button><span class="sep">/</span><button id="crumb-course-2">Cổ Ngữ Pāli</button><span class="sep">/</span>'+match?.textContent?.trim();
+  document.getElementById('crumb-home-2').addEventListener('click', goHome);
+  document.getElementById('crumb-course-2').addEventListener('click', ()=>showView('lecture'));
+}
+document.querySelectorAll('.lesson-tabs button, .group-link').forEach(btn=>{
+  btn.addEventListener('click', ()=> showView(btn.dataset.view));
+});
+function goHome(){
+  document.getElementById('course-screen').style.display='none';
+  document.getElementById('home-screen').style.display='block';
+  document.getElementById('crumb').innerHTML = '<button id="crumb-home">Trang chủ</button>';
+  document.getElementById('crumb-home').addEventListener('click', goHome);
+}
+function openCourse(){
+  document.getElementById('home-screen').style.display='none';
+  document.getElementById('course-screen').style.display='block';
+  showView('lecture');
+}
+document.getElementById('crumb-home').addEventListener('click', goHome);
+document.getElementById('open-pali-course').addEventListener('click', openCourse);
+document.getElementById('res-goweb').addEventListener('click', ()=>showView('lecture'));
+document.getElementById('res-goflash').addEventListener('click', ()=>showView('vocab'));
+document.getElementById('res-print').addEventListener('click', ()=>window.print());
+
+/* Word download via downloads capability */
+const DOCX_BASE64 = "UEsDBAoAAAAAAGs8Rl0AAAAAAAAAAAAAAAAFAAAAd29yZC9QSwMECgAAAAAAazxGXQAAAAAAAAAAAAAAAAsAAAB3b3JkL19yZWxzL1BLAwQKAAAACABrPEZdxppPZfoAAAAhBAAAHAAAAHdvcmQvX3JlbHMvZG9jdW1lbnQueG1sLnJlbHOtk91OAyEQhV+FcO+yrVqNKe2NMemtWR+AsrM/cRkITI19ezF2KzUN8YLLOTOc+TI5rLefZmIf4MNoUfJFVXMGqG07Yi/5W/Ny88i3m/UrTIriRBhGF1h8gkHygcg9CRH0AEaFyjrA2OmsN4pi6XvhlH5XPYhlXa+ETz34pSfbtZL7XbvgrDk6+I+37bpRw7PVBwNIV1aIQMcJQnRUvgeS/Keuog8X19cvS67Hg9mDj3f8JThLOYjbkhCdtYSW0jOcpRzEXUkIwPYPw6zkEO6LZgGI4t3TNJyUHMKqJIK25ruVIMxKDuGhbBqQGrWfIE3DSZohxMVf33wBUEsDBAoAAAAIAGs8Rl0Yti4KFhYAAJxuAQARAAAAd29yZC9kb2N1bWVudC54bWztXV9v28aW/yoDP1w4aGJZku04zk2LxGmToLdBsPZmN48jkhYnEocqOZSjPkUbXGSLbrEN2mLRLS4aJ8jNpqm3zW2KbqSHPlDN92A+yT1nhtQfW5LpP93mOgcJTHI4PCLn/GZ+c2bmnPnjO7e8Oms6QSh8eW6mODc/wxxp+baQ1XMz/7z+3qnlGRYqLm1e96VzbqblhDPvvP3HzRXbtyLPkYp51sqVqvQDXqnD/c3iAtssLrLNRnFhhoFwGa5sNqxzM65SjZVCIbRcx+PhnCeswA/9DTVn+V7B39gQllPY9AO7UJovzuuzRuBbThjCm6xy2eRhJs7bLc1vOBJubviBxxVcBtWCx4Na1DgF0htciYqoC9UC2fNLmRj/3EwUyJVUxKn+C+EjK+aF0kP2RJDnd80jF9PS0b9YCJw6vIMvQ1c0Bp9xUGlw082ENKd9RNOrD1RQXDicDi4GfBMOA4F5Xt82D3l18+bTJRbnc2gERfSfyPMKo7+ZvYnHhRz88IGKZqhwi4v7E1DaKaBRPZxyLgV+1BhIE4eTdkXW+rKwzu9DVqrk4U8LD/cyay5v9GugdSufsBR3KG+hYLk8UM6tgYzivoUsFs4UlncLKh1AEHxgqbhbVHnfopYK+Fa7BOXE8g5B8Fa7JOUE9U5JYz5u6WCSSrslnT6YpPJuScsHk7QLTtCQ1A4gSgzqGPfK9r4lnC54vu3Uy4PGsLhkOTmrR1bXltPKWrAG34NyRM73yeQs9eWI4fc52MsMCQhtZbv7klLK2uYCPssVd3noDkvcX3MG9TUT1/KgjLDjU/HtFh4b+s+1AA9hg1ugGLa5wjeUA/2EpfmZAt64aUFak9fPzVjA306AqYX+Y+ZPev6eL1WIEkJLQAO+LjwnZFedTfZPvseBrDZXrHBsssNDdT4UfOxN97wMx0jTL1cxf1dDfbT8uh9kb3t6tQT/TLbwoyy1vJSlrIajaYX+dygsbF0gUNSNwAmdoOnMvN37LOneZqsvv395/+olFn9xla1fvsIuXUm6/3uevZ90/4YilBFkiug4lvGgKEvLu4vSpO1ZlB9g6a0m3S/Y1UtQfOxa7/afrrBXt79gl5Puf6zq0mQL+y/P8vw/QoEK83ccaBfOl8+Uzu8EbWl+TEnP5yrpa27S2fJYU6ywC/F9wUrzbBaA3NkSTCXdp6wu4m8lc5PuXfaHDyNfnb3BzfGEVodyHZ8pfLAuIE/ELl2fY1fX2Dr8vzrHLprEyyLp/BLtqa7GmmrVnewDLjscTbRi+mk7VVlcnMdyrDjQE3b6mn1tdLj/hmeMDsv5dfhYsqLWyDpqrZl0n0FhWUn3nmL1+CfBZmtu/FwnYVY76X5iuXjxkFnxg+jE/qtS8XUr8KzQNng9dGay4h+TKsaljc05VMNKY2pYKZd21t0o6X5lMVl1e0+4rlVQjl7SfWQx++UPSfdrwXr34gets3BIum2oU1D3XLzzF1SY67Mw6fwk9ZMn4Trpfsxa8beR1mUED0Ela8tMvusnnZ/h1wAT26BorIASdLwF6p61eOicmBura1Wpp4f0Yyr1f4EPVa0GfIx9i2Pxb6LWi1kTCjkuQMfBCUJ95TeyckGTpu5oHSPsz83wSPl4GX4EDZh5uO5sqP3kr/hK+d5+nghE1d3XTwjAlu1c3v8j1/M/UhgttsJogV8KhI2nVTiu+nVT4qez8h5JXSyNTV4o9WvlkDxlfsAyf9Ofs8apt/9joWtDyoaow2e9+967C6vlmT5h1h0epBCwPuDBQPs7pS3Pjyh7N5bmdyh3koBMlxMkFIbepHm+LqpyLLlnn954HVqrEXo4UIt0cM5fW18f0wYUBhDZGygD/BFSjjFSrvXadXFYrCwQVt4ErFzV/Y/JYCn0iWj/dESQeE27xQeHS/HoKIjQcezQ0fJf3f5r6LMCazlwppyjIyFCy7FDi6xqa1kwGd/3GeAF7Of4O9ZPBvP6R7B+wXJ+bEzhceMdRFMErd3QKhFNETom0xRPXtxBfsIjURQhZSJSgHZ20pNOMtSEA7/3BHETYWo/mCoTNxE6JnOTI7k2neSUQRlipjceJ009A7nbhNqRbogqTLrbOHv8CGcmia0IZ/lxNm65DrEVoSOzpMJQ0xUeia8IKRORArZS5xc5hrB23hiM+n2sV9Z8Il3iLMLafrC2SJxF6JjCWZ7ba2vSwhNiLcLKRKzoxdRj5qlGkg1j3YqSziMQk3SfEF8RyvaDsiXiK0LHNBvLE9mElTklziK8TMRL0v2GyZfD81b9lMG0FVpVIaYTVRG49gGu00RVhI6J6Ki4/k0ucVUFKzCr97TJAw5nTQF2VkDjgwSdKZaWC4aTxXp3JK4eZQ1Xe9oV0NRCrroVbxFHEZRyQWmZOIrQMREdvbbFA9FCXgpFGPrESgSWaazUedwCqAAdfWoxFcTjwoEQDRF2dmPnDNEQoWOKqcSrvNlrQ9sCRpKb2kwh97xeG/5WItt2iZsIQVM6Mp9pi2kdKOoXth4/R8Pp/Kk6P+XGW3i+ikeXYVigH2WVXRLxlkXkReDKBa7iPLEXwWMiPMKoyhX6+db9Gm8K+9enyGMyUooHxFqEnMnIWXdNbKt1HZyukNLXJcEl/Ek6DwWkXY+fQzqurngIxLXWe0K0RejKR1sUn4LgMYW2wOCq1dxeW3NXyKUtkhfb8N8VNUzhNYycVCMGIxBNBlHNjZ/4rIpkBexUwMCPQGGK4QzWM4ul/KZ0MNYCa2oaM3f/IuAxLonNCGn52IzCWBA8JsPDcUWDh6GhLr/BJW+Z86ZjC8UrFZ81RfwsfvbrU/cIwwESko4dkrx0Hbv2xPLi+8hWnUc472Unnacyu3NVE92pSnwfxxf7699VEG/jOo1nOsrxEyBFWdUs6BHTEQDzMR0FxSB4TLHbogYHKw3oTkptufXaTV7jIST+uUrTZISdPc01FzjLRab6DlemunEHWGrd5ZDWxCWHuCT+LnLYNlEW4SofZVFkDILHZHj02m4knVYL6crmtRp0iF/cTa95/Owmr4saD4DA7vaetojBCEpToHQv3tKBm5C07GyHmQJL09M9Y5DCPk8z9e+BQdb5vsEUb7F60v0zkRtBLh+5UQgNgsdkeHiOUmbpYtPRHl680uq1G/zmTVevq49qbu8pcRohaCKCVPzAM2E0Cizd487HZYvKjV/oOTW4UnAn6X7JdF5cXgQc1qE1jISxvCRGcTUIHpPhYffaLa7ny+BM8gZXNElGeJlCWW68zcxuJEhQ/YtZC84lxdAgIOXlJQqiQfCYDI8a8lIYclZxHWAm1tDDhHeYlw4XUsRCQs9k9IQ8ArMJt6KOH0i9rfSWYB781aOBkawSTRGS8tEUxdEgeExpaNAFDIMRspBXq5qh0BkMj1GD41ggGVSEoOlUJV1Wj7+VzIp/EnB2X7onzbkKcGUhURUhKR9VUawNgsdkeLiOinDBsgh8W09QKa7cXhtdmImgCDcTcSO1DVXAQLnPmI0r2hVcXXVf/sD+xImdCEb5YFSiWBoEj8nwqPTadSQlXOJ+N/m/T4XCq4rLdYxCsKVsmzcpeC5BaApR9XcoqUa7PLM0fz1kbqxja0COlvZRvkPeWQSvnARGUTUIHpPhEXIltH8WBtLApRQ65HsAvKWNLYy26zOPV6tkbRGMppCYdhk2G2hB/yfpfqKDZtwTxhtZ6WBRJqThvaSzNQVMRF8ErGH6ojAaBI/J8GiKm0BaTkubW5J7PAz1xazfUMBsTWfKyi6irTcePlb8o+apO8aq0vYXzmnVcFGg9rpiszUgsIdM9u5oN65cG27hoVLvl34j1cSaatWd7A0vO9wWslpM3x3eDK5QKxugQ1D24jyWasXZ8AN45XJf96mw31ujmQ710fLrfpB92OnVEvzbqaTyGCWV8ynpGsbxl6zEXt3+gl0wkbsqQgc10fowXQphPBLqAvWn41P+4cPIV2dvcHNks9A8MDVpteeoqnar43Ur/9+2RpXG1KhSLmWtB0n3Uyg54yPiihXQDlStNvo4avfG+LmeIL6HeQIfVak1elIvd/rZws2CrNG9w5mVdB9z5iXdrxTGtNnaqX/L9VmYdH6Sc2MVm1ZFOKRvXqmPa+iL8/0mGnJc8APbCcJBc68LIQRQ1B2tUIT8uRkeKR8vw4+AKUba/9z5+3yQ+4mMIHI/IABItnN5/49cz/9IYbTYCqMFfikQNp5W4bjq102Jl5ayAh9JXiiOTS4vDPhvIDC/lTD4tdC1IWlD1OHD3n3v3YXV8kyfQusOD4juj5Ic/p8pfRWbhEN3+oqElTcAK2vAQyzeVoeFS9Y0EVyOP1wkWgrt6EgHsAbURMh4TXvEh1jfNsdWta+ZdbTMRFA5dlBp+a9u//XwuxoO6Igwcvww4gBGlEP8Q4DJOYMyh9uI4VQcERBhZY/GBV2AsH3BI9EQIYVoiABzNIApzzGwn7eZnXQfZTNpxEUEmCktjOS6jZGHXj9NTHSsceIKjZNp+6QQGxFohkGzYAblPh6daSY+IshMsY3CUBMSHomRCClTGCnM7GhzRrxE0MkHncU59q+RXjCvl9ITKxFg9mQlr9c+yVrcc3ttQ086QekE4inCDllOBJqjA82SHsf7hik3SrpfWURRhBgynAgpZDgRdH5P6Jw2qxxwKC9EeiJaIsTsbTlhCFRjO4nUdDIpaDwdOv4pUdVxRo8TRoan9l4KjgdyBx0p+cO7g5a1O+hFaPLRAzB+EK2wpPs/uMmiWWCwnDoHzl6I76NvaGe7gaHUn0bk/fnbeX9eNN6ZOKnWBgsx2+6ymnR+bqxoP03UFLvWa9cFtLvxtxGzQJsRKg31+BZk7X4K6jKBhQfOnxZKGHH0NV69LWNYmAty//yHcv+c4P05IfnM4bw/yfnzjfDQWl8/dJ+fkPImIGW1z0OHBswZAswbAJi0pymrbu8JZ7O4R3eDxVvyaLeOoyGq171zfHAEHToQ5wKh4/ii44bPKq5/k0u9C4/tKDCQQp/12q1Ib8/DKy5XYpyJc0C2IgwdOwxd7YeSju/72tzG4GZPLNa7I08OIksnnUctJt2ks41RmTDxocVUlHS/1OE6u59OQRlxGiFu2LmUOI3QMZnTNJc1hdtrm21QuasPVW5ZkOYBxammTmlAyzO4xUMiOgLWFGCtx88FBhbUI8K/SBwRxpnfW/GWpr6TGFRwSzLr1yd6NHpcPjDgfiSeI8DlA1yZeI7QMZnnHMlZiHsmiCGWG+K9YcLDvCnrEdkRuvZBdlb8AuhMjhh5u4htN/fteAytPyI+Al8+8C0Q8RE6phh4YcgzvrN6T5s8SIcvNdXpuynXjdwlyiNc7Ul5OH7ZYg036T6yMp4bIb9RqpuanUiP4JcffotEeoSOKaSHnrUZ69ku9zx9FlWruAtsZueN5BpiP5zJwyzEgASyPRgQ5+Isds3FpSZ60esO+lOYKZ3I61PfaEYiPkJdftQtEfEROvaw9npty+wKa8Y3HTwCtam+wZdSXijC0CeSI0BNITl05WmlLh6j45oqiDtMxxkYGtnUfFeP76fECHn+tvNh4jsCYH4Ania+I3RM4zvtD9xnutAfIruU5vTKlUE+HpBtR7jKuUxTL8Qcw3TD5p0Z3ByXKd8KFjyQ8/GI6g7vfLygnY/BMH8gcUtZ7ReSdL8HExxNdctsYerrwemaAHWpoV1Rx2iM3I+Pxv04/kKyunYRHlEB1KYWa8bf9f2SBXO5rnioObOvrPZLBi19rkdd/lOgKscqF4dXUJNwIH9j8jfe02ogp8Bj7BRI/saElHxI6X1muMiQztGZBwSaYw0akXTveKOdS90BldBJ+ZrVXHTYOtrgrTSg8br3jw+OJ/JAJnRMRoeZZ16NO6y4XF5ha7xS4Y1eu2EmdWp6+cJdruPj1aKQ1yH916dwl3sNbuvY4zTqRfCaCK9hBLFzjLO3WJbCZq3BDtnQRYr0UMm2dE+cHQs1PQdUFxgkLH7g9bOgyGiQi6aBCJr5oElezISOPLxYPlNaYenyv8G6v6a42WtLp6VjEQJt1mrcsvQd49IsuQeNU3qfKJKQNhFpKbTOsVs79wBKlzn8gTf88GyLm+NZNAYfshIOYd+Vbjq8bWt3r5qLt2TvTrbXKpv1G4or0XROgD2JM0tljJR9j8Xb6iQz/GvsTPjbeewxF23PiEiUwJsPvOQiTeiYjI4rSjQELqCouLzKm7gyPsgWCgKR9trwtxLZtusjic6eYfG/Sd2gPcEF0ElnW00JtEfU+cbjaxW3I/ovYcxGswa+6sZPGqySdL/Mojaii5ihztA3Rz2P7+180op/xEDU9ywWoJFZZbNNe46FUZUrH9g5jMDQfPXv/13lHpwofoJIkmCaD6bkTk3omIyONeDFWg1MAJXxJFeZqWl4cWmUF8EwJVokRE1GVMilLZIX2/DfFTX/JOM1jHmNZ44rcGgfzhFZ2naM9MDqDiLEzleEl/fYKVHjuJnD95I1cZG+zbOMuMDtKeTSwSRllQiRAJoPoORqTeiYjI73k+5ddjFq4UzP+27S/Uaw2etC8hZnH3DgySavVvmJFXbDMSQJZOk6Kmo0MFpyk+YkCV/T8WWMwBvOYMfJ1CwcnpB8dfvzcNeOt2bsVOIgaTs6gXSYDc76TIrAt93MwvRwAbiLq79G9i8y05cuAlwFPtiYzd4diQFNHkoMwtzZVkSiBON8MCa3bULHZHRccJEv1yKlODBlry0Fq+FfS6CR2dIJSJk3b3KpBFEmoSkHZSJqACopkFKqk8CJYhLLjc5dsmbS/Xo0b0XPeaIhih5uJltNxM/64nGs1mwXaH4IjNsq09s7lopElgTgfAAmn29Cx2R0XBcBxnEe8KUxC1gNjtgUMYsr1WsHPrQ+SjR4OrYGzSDYnk3zMNmdhLK9AobvQNU5toeJOXYBEHtrMoGSZ/jv4hm+qHspendJ40cMmnnG6pGO0RY/l2Yn6jG6IR/wo/EBL86x9SD+DnqQFXT7/jBqYZF/b7GK0CFhh5fTTeqppltLm6Me28GVA814W28uPjyig5W2nMo01a+WdMdGZSD9Ho1+S3PsfXeikTGIdz+cQWpf/lsvf5DVk0OIcH0TSuphA62RdqpGVLdueXEurBp/9w5bHVa+aWnR6NBBqEjVv52qy3NTQmw8iFbSinrDH1qMrb2V0r0T9Xqy4dQ58wCp7DdT2cIcSzfKxWo0HEPD5cIE2cCK+Tjrz9RyTfBQJfvtNLY4xy4BMz5ET2KtKAyUEnI/rVxhr227UU1PjRg6NLMVWpUmZQ1soUEuVsuqYo0HvhLpUzUXOj+6VTa7TDq+aWQNDIaWn+9H1zv6nZsrN62xNsnrAQGRqXJ3b3T5wuny4uIRGhjYCb0M/R2F3dGxJRo6lkp7/NW1j1JLr3hmfkl/BpwvLZeX8dwPBJQlCPcDFXChzDs1qmAKMm2T4nPlBcyqLcjBpbE4B9dooQ6uXDAtsKaentc/s+H7auiyCuY3Xs5nP3c18tbBMNVXtm9hRBYUKaRzTSgLXri8lBVN9mkFfAW7pU/gkciD73j771BLAwQKAAAACABrPEZdtOclsuMCAACjEAAADwAAAHdvcmQvc3R5bGVzLnhtbOVWW0/bMBj9K1HeIZemBSoK2goVSNOGGGjPruM0Fo6d2Q6l/PrZiZ2WpqGFBiZtb/0uOT7nu9Q+PX/KiPOIuMCMjtzg0HcdRCGLMZ2N3Pu7ycGx6wgJaAwIo2jkLpBwz89O50MhFwQJJ4PD6xllHEyJis6DyJkHfddRqFQMMzhyUynzoecJmKIMiEOWI6qCCeMZkMrkMy8D/KHIDyDLciDxFBMsF17o+wMLw3dBYUmCIbpgsMgQleX3HkdEITIqUpwLizbfBW3OeJxzBpEQqhIZqfAygGkNE0QNoAxDzgRL5KESYxiVUOrzwC9/ZWQJ0H8bQGgBdPljBi9QAgoihTb5DTemp8181fQa2WXvnPlQLnLVtBxwMOMgT13HhK7jkXuHJUHlURRkOvkREOstz5gCgeIf1Ea+6+qRKkTRk9zk/z0pS+wZxiWVZ5vYH1RJ4nksXvo8k+0ZertKuEJAz3HQUGECTtClEsgI4zY3vDyKvvatIOvthU2JlW9PiWGrxPCTJYYbuhh20cVeq8Teh0kMJtHF0XFDYrRBYtSBxKhVYtSlRFwaeCy8V3q6p5R+q5T+JwzknuQHreQHnzBq7yX/U3JGZw3qxt0h72mFVc7Pe8l+w0Le1JF1zjrqLMPbuC85ttOAqYKDEvGXDVcxTjB9aHa8jmw63VymNcUJo7JKLPANx4yrJ4zNPTkxEZriGP1KEb1XWK2D4PcHvbG5mArr1I+Q6t7dXvDNSieMScokukUJ4uqF17zaE5Ph8DqlK+kCZfgKxzGiWyqhHqLyC8Gz+jRRqDYIyHEu99kNq/5OTXm7cKmj24ZNz4T1r8KOVdn3r0NuXkU5gPr/Zj4EieqkmgotRx2N9FVTG7eFfnSDQjJTHPN5420V+huuLL+Leaqlr1fVJjg6w1lWZ+dxait0Z8P2keW5pPHr24aqhH9x2Yz2jbtmZb951VZA/7NNW1e+XlIT72TPVlv3d9fM/hJnfwBQSwMECgAAAAAAazxGXQAAAAAAAAAAAAAAAAkAAABkb2NQcm9wcy9QSwMECgAAAAgAazxGXQT0Ezs7AQAAgwIAABEAAABkb2NQcm9wcy9jb3JlLnhtbJWSXU+DMBSG/wrpPZQPxdkAS9TsyiUmbtF417RnrJF+pK1j+/cC2xiLu/GyfZ8+ec+BYr6XTbAD64RWJUqiGAWgmOZC1SVarxbhDAXOU8VpoxWU6AAOzauCGcK0hTerDVgvwAWdRznCTIm23huCsWNbkNRFHaG6cKOtpL472hobyr5pDTiN4xxL8JRTT3EvDM1oRCclZ6PS/NhmEHCGoQEJyjucRAm+sB6sdDcfDMmElMIfDNxEz+FI750YwbZtozYb0K5/gj+Xr+/DqKFQ/aYYoKrgjDAL1GtbrVWoqARe4Mllv8CGOr/sNr0RwJ8OE+5v1uMWdqL/SlUyEOOxOA19dAMPurLkONo5+cieX1YLVKVxmodJHMb5Kn4g2T1Js+huln/11a4cF6k8lfiv9TGbWM+Samh+/eNUv1BLAwQKAAAACABrPEZdHinpWnACAABkDAAAEgAAAHdvcmQvbnVtYmVyaW5nLnhtbM2XS27bMBCGryJw71By5AeEKEHbIIWLvoCmB6Al2ibCF0hKis/QRXfttmfrSTqULPlRILBlBPDGtDgz3/wUOUPo5u5Z8KCkxjIlUxRdhSigMlM5k8sUfX98GExRYB2ROeFK0hStqUV3tzdVIgsxpwbcApEls6VUhsw5OFRRHFTRKKh0FKMA6NImlc5StHJOJxjbbEUFsVeCZUZZtXBXmRJYLRYso7hSJsfDMArrf9qojFoLOd4RWRLb4sT/NKWpBONCGUEcPJolFsQ8FXoAdE0cmzPO3BrY4bjFqBQVRiYbxKAT5EOSRtBmaCPMMXmbkHuVFYJKV2fEhnLQoKRdMb1dRl8aGFctpHxpEaXg2y2I4vP24N6QCoYt8Bj5eRMkeKP8ZWIUHrEjHtFFHCNhP2erRBAmt4l7vZqdlxuNTgMMDwF6ed7mvDeq0FsaO482k08dyxf9CazNJu8uzZ4n5tuKaIp8yyFz6wzJ3OdCBHtPsxxaF/JtJzEUupXxk013erNw1Lw1lDylKKwpouCOfaQl5Y9rTQFUEg4K13PD8k/exr0NYe/LSw4ODAYfXSdwUIZQyyX1Kb1Pna/FRE0cNMcH0U3OC86p64iP9Lkz/f39s5v/kLWznC427vqr8QOTOdj8dIomQ68kWRG5rJv09Tj0vnjjjGvWofjodcT/OFV8FMc91A9fRf2vP6eqH0bjHuqvL+TgDKfTHurjCzk5ILaH+tGFnJz4uk/Vji/k5IzCPlU7uRT1kz5VO70Q9eP4uKrFezfiRlVQ/zbX48ENOssPFgGUL/AhALcg3bnzuiXv2LZReC+sfpY+Od75Prj9B1BLAwQKAAAAAABrPEZdAAAAAAAAAAAAAAAABgAAAF9yZWxzL1BLAwQKAAAACABrPEZdH6OSluYAAADOAgAACwAAAF9yZWxzLy5yZWxzrZLPSgMxEIdfJcy9O9tWRKRpL1LoTaQ+QEhmd4PNHyZTrW9vKIpW6tpDj5n85ss3QxarQ9ipV+LiU9QwbVpQFG1yPvYanrfryR2slosn2hmpiTL4XFRtiUXDIJLvEYsdKJjSpEyx3nSJg5F65B6zsS+mJ5y17S3yTwacMtXGaeCNm4Lavme6hJ26zlt6SHYfKMqZJ34lKtlwT6LhLbFD91luKhbwvM3scpu/J8VAYpwRgzYxTTLXbhZP5VuoujzWcjkmxoTm11wPHYSiIzeuZHIeM7q5ppHdF0nhnxUdM19KePIxlx9QSwMECgAAAAgAazxGXaCOjqWaAQAAOAgAABMAAABbQ29udGVudF9UeXBlc10ueG1stVbLTsMwEPyVKFfUuHBACLXlwOMIHOADXHuTGmKvZW8K/D3r9CEFmlKguWU9MzsT70bK5Ord1tkSQjTopvlpMc4zcAq1cdU0f366G13kV7PJ04eHmDHVxWm+IPKXQkS1ACtjgR4cIyUGK4nLUAkv1ausQJyNx+dCoSNwNKLUI59NbqCUTU3Z9eo8tZ7mxia+d1We3b7z8SpOqsVexYuHrqQ9+LXmJ8nc+o4i1fsVlSk7ilTvV8RldcL32FHxWa9Kel8bJYmJYun0lzmM1jMoAtQtJy6Mj98MGI0HOXwVpvqPybAsjQKNqrEsKXBeNpHZoO+4SccENVF7bQ+8ocFo+I/PGwbtAyqIkZfb1sUWsdK41c08ykD30nJvkehiS1m/7iA5In3UEHcHWGH/st8sgsIAIzb2EMjs8OOAj4xGkYjHfGHVREJ7mHVLPaY5pG3SoA+y59aDTto1dg6Bn3cPewsPGqJEJIfUt3FbeNAQPJM9GTbosJ8dEPFT34e3RgeNoNAmoCfCBh14G7iRnNfQtw1reBNCtL8Cs09QSwMECgAAAAgAazxGXVh52yKSAAAA5AAAABMAAABkb2NQcm9wcy9jdXN0b20ueG1snc5BCsIwEIXhq5TZ21QXIqVpN+LaRXUf0mkbaGZCJi329kYED+Dy8cPHa7qXX4oNozgmDceyggLJ8uBo0vDob4cLFJIMDWZhQg07CnRtc48cMCaHUmSARMOcUqiVEjujN1LmTLmMHL1JecZJ8Tg6i1e2q0dK6lRVZ2VXSewP4cfB16u39C85sP28k2e/h+yp9g1QSwMECgAAAAgAazxGXeL8ndqTAAAA5gAAABAAAABkb2NQcm9wcy9hcHAueG1snc5BCsIwEIXhq4TsbaoLkdK0G3HtoroPybQNNDMhE0t7eyOCB3D5+OHjtf0WFrFCYk+o5bGqpQC05DxOWj6G2+EiBWeDziyEoOUOLPuuvSeKkLIHFgVA1nLOOTZKsZ0hGK5KxlJGSsHkMtOkaBy9hSvZVwDM6lTXZwVbBnTgDvEHyq/YrPlf1JH9/OPnsMfiqe4NUEsDBAoAAAAIAGs8Rl2cicmRzgEAAK0GAAASAAAAd29yZC9mb290bm90ZXMueG1s1ZTNTuMwEMdfJfK9dVIBWkVNOYBA3BDdfQDjOI2F7bFsJ6Fvv5PETbosqgo9cYm/Zn7zn5nY69t3rZJWOC/BFCRbpiQRhkMpza4gf34/LH6RxAdmSqbAiILshSe3m3WXVwDBQBA+QYLxeWd5QeoQbE6p57XQzC+15A48VGHJQVOoKskF7cCVdJVm6TCzDrjwHsPdMdMyTyJO/08DKwweVuA0C7h0O6qZe2vsAumWBfkqlQx7ZKc3BwwUpHEmj4jFJKh3yUdBcTh4uHPiji73wBstTBgiUicUagDja2nnNL5Lw8P6AGlPJdFqRaYWZFeX9eDesQ6HGXiO/HJ00mpUfpqYpWd0pEdMHudI+DfmQYlm0syBv1Wao+Jm118DrD4C7O6y5jw6aOxMk5fRnszbxOov9hdYscnHqfnLxGxrZvEGap4/7Qw49qpQEbYswaon/W9Njp+cpMvD3qKFF5Y5FsAR3JJlQRbZYGiHz7PrB28ZxwhowKog8HanvbGSfc6rq2nx0vQhWROA0M2aTu7jJ863Ya/66C1TBXmIal5EJRy+mSI6RuNqPo77E26SPR3QQTOdvT5Nl4MJ0jTDK7P9mHr6EzL/NINTVTha+M1fUEsDBAoAAAAIAGs8Rl3Sd/y3bQAAAHsAAAAdAAAAd29yZC9fcmVscy9mb290bm90ZXMueG1sLnJlbHNNjEEOAiEMRa9CuneKLowxw8xuDmD0AA1WIA6FUGI8vixd/rz3/rx+824+3DQVcXCcLBgWX55JgoPHfTtcYF3mG+/Uh6ExVTUjEXUQe69XRPWRM+lUKssgr9Iy9TFbwEr+TYHxZO0Z2/8H4PIDUEsDBAoAAAAIAGs8Rl0/So6NwQEAAJIGAAARAAAAd29yZC9lbmRub3Rlcy54bWzNlNtu4yAQhl/F4j7BjrrVyorTix5Wvaua3QegGMeowCDA9ubtd3wIzrZVlDY3vTGnmW/+mTGsb/5qlbTCeQmmINkyJYkwHEppdgX58/th8ZPcbNZdLkxpIAifoL3xeWd5QeoQbE6p57XQzC+15A48VGHJQVOoKskF7cCVdJVm6TCzDrjwHuG3zLTMkwmn39PACoOHFTjNAi7djmrmXhu7QLplQb5IJcMe2en1AQMFaZzJJ8QiCupd8lHQNBw83DlxR5c74I0WJgwRqRMKNYDxtbRzGl+l4WF9gLSnkmi1IrEF2dVlPbhzrMNhBp4jvxydtBqVnyZm6Rkd6RHR4xwJ/8c8KNFMmjnwl0pzVNzsx+cAq7cAu7usOb8cNHamyctoj+Y1soz4FGtq8nFq/jIx25pZvIGa5487A469KFSELUuw6kn/W5OjFyfp8rC3aOCFZY4FcAS3ZFmQRTbY2eHz5PrBW8YxABqwKgi83GlvrGSf8uoqLp6bPiJrAhC6WdPoPn6m+TbsVR+9Zaog96OYZ1EJh++jmPwmWxFPp+0Ii6LjAR0U0+j0UaocTJCmGR6Y7du00++f9Yf6T1RgnvvNP1BLAwQKAAAACABrPEZd0nf8t20AAAB7AAAAHAAAAHdvcmQvX3JlbHMvZW5kbm90ZXMueG1sLnJlbHNNjEEOAiEMRa9CuneKLowxw8xuDmD0AA1WIA6FUGI8vixd/rz3/rx+824+3DQVcXCcLBgWX55JgoPHfTtcYF3mG+/Uh6ExVTUjEXUQe69XRPWRM+lUKssgr9Iy9TFbwEr+TYHxZO0Z2/8H4PIDUEsDBAoAAAAIAGs8Rl1Nn8rKoQEAAHMFAAARAAAAd29yZC9zZXR0aW5ncy54bWyllN1u2zAMhV/F0H0iu1iLwahbdCvW9WLYRbcHYCXZFiJRgiTby9uPjuO4P0CRNFeSQfE7R6TF69t/1mS9ClE7rFixzlmmUDipsanY3z8/Vl9ZFhOgBONQVWyrIru9uR7KqFKiQzEjAMZy8KJibUq+5DyKVlmIa6tFcNHVaS2c5a6utVB8cEHyi7zIdzsfnFAxEug7YA+R7XH2Pc15hRSsXbCQ6DM03ELYdH5FdA9JP2uj05bY+dWMcRXrApZ7xOpgaEwpJ0P7Zc4Ix+hOKfdOdFZh2inyoAx5cBhb7ZdrfJZGwXaG9B9doreGHVpQfDmvB/cBBloW4DH25ZRkzeT8Y2KRH9GREXHIOMbCa83ZiQWNi/CnSvOiuMXlaYCLtwDfnNech+A6v9D0ebRH3BxY47s+gbVv8surxfPMPLXg6QVaUT426AI8G3JELcuo6tn4W7Nx4kgdvYHtNxCbhmqBcpfGx5DqFd6h/C3lTwWSplk2lD2YitVgomK7M9OUWHZP0wCbTxaXjLYIlqRfDZRfTqox1IUTSj5K8kWTL/Py5j9QSwMECgAAAAgAazxGXYuGOcTFAQAAxggAABEAAAB3b3JkL2NvbW1lbnRzLnhtbKXU3XLiIBgG4FtxOFeSWFM307Qnne30eNsLoIDCNPwMoNG7X1IlSZedToJH6iTfk5fXwMPTSTSLIzWWK1mDfJWBBZVYES73NXh/+73cgoV1SBLUKElrcKYWPD0+tBVWQlDp7MID0lb4VAPmnK4gtJhRgexKcGyUVTu38vdCtdtxTCExqPU2LLL8DmKGjKMn0Bv5bGQDf8FtDBUJUJ7BIo+p9WyqhF2qCLpLgnyqSNqkSf9ZXJkmFbF0nyatY2mbJkWvk8ARpDSV/uJOGYGc/2n2UCDzedBLD2vk+AdvuDt7MysDg7j8TEjkp3pBrMls4R4KRWizJkFRNTgYWV3nl/18F726zF8/woSZsv7LyLPCh247f60cGtr4LpS0jGvb15mq+YssIMefFnEUTbiv1fnE7dIqQ7q+sq9v2ihMrfUdPl+qHMAp8a/9i+aS/Gcxzyb8Ix3RT0yJ8P2ZIYnwb+Hw4KRqRuXmEw+QABQRUGI68cAPxvZqQDzs0M7hE7dGcMre4WTkpIUZAZY4wmYpRegVdrPIIYYsG4t0XqhNz53FqCO9v20jvBh10IPGb9Neh2OtlfMWmJX/tq7tbWH+MKQpgI9/AVBLAwQKAAAACABrPEZd0nf8t20AAAB7AAAAHAAAAHdvcmQvX3JlbHMvY29tbWVudHMueG1sLnJlbHNNjEEOAiEMRa9CuneKLowxw8xuDmD0AA1WIA6FUGI8vixd/rz3/rx+824+3DQVcXCcLBgWX55JgoPHfTtcYF3mG+/Uh6ExVTUjEXUQe69XRPWRM+lUKssgr9Iy9TFbwEr+TYHxZO0Z2/8H4PIDUEsDBAoAAAAIAGs8Rl1j7V7WHQEAAEMDAAASAAAAd29yZC9mb250VGFibGUueG1sndHdbsIgFAfwVyHcK7WZjWms3ixLdr89AAK1RA6n4eDUtx+ttmvijd0VEPL/5Xxs91dw7McEsugrvlpmnBmvUFt/rPj318diwxlF6bV06E3Fb4b4fre9lDX6SCylPZWgKt7E2JZCkGoMSFpia3z6rDGAjOkZjgJkOJ3bhUJoZbQH62y8iTzLCv5gwisK1rVV5h3VGYyPfV4E45KInhrb0qBdXtEuGHQbUBmi1DG4uwfS+pFZvT1BYFVAwjouUzOPinoqxVdZfwP3B6znAfkTUChznWdsHoZIyalj9TynGB2rJ87/ipkApKNuZin5MFfRZWWUjaRmKpp5Ra1H7gbdjECVn0ePQR5cktLWWVoc62F2n1x3sPsy2NACF7tfUEsDBAoAAAAIAGs8Rl3Sd/y3bQAAAHsAAAAdAAAAd29yZC9fcmVscy9mb250VGFibGUueG1sLnJlbHNNjEEOAiEMRa9CuneKLowxw8xuDmD0AA1WIA6FUGI8vixd/rz3/rx+824+3DQVcXCcLBgWX55JgoPHfTtcYF3mG+/Uh6ExVTUjEXUQe69XRPWRM+lUKssgr9Iy9TFbwEr+TYHxZO0Z2/8H4PIDUEsBAhQACgAAAAAAazxGXQAAAAAAAAAAAAAAAAUAAAAAAAAAAAAQAAAAAAAAAHdvcmQvUEsBAhQACgAAAAAAazxGXQAAAAAAAAAAAAAAAAsAAAAAAAAAAAAQAAAAIwAAAHdvcmQvX3JlbHMvUEsBAhQACgAAAAgAazxGXcaaT2X6AAAAIQQAABwAAAAAAAAAAAAAAAAATAAAAHdvcmQvX3JlbHMvZG9jdW1lbnQueG1sLnJlbHNQSwECFAAKAAAACABrPEZdGLYuChYWAACcbgEAEQAAAAAAAAAAAAAAAACAAQAAd29yZC9kb2N1bWVudC54bWxQSwECFAAKAAAACABrPEZdtOclsuMCAACjEAAADwAAAAAAAAAAAAAAAADFFwAAd29yZC9zdHlsZXMueG1sUEsBAhQACgAAAAAAazxGXQAAAAAAAAAAAAAAAAkAAAAAAAAAAAAQAAAA1RoAAGRvY1Byb3BzL1BLAQIUAAoAAAAIAGs8Rl0E9BM7OwEAAIMCAAARAAAAAAAAAAAAAAAAAPwaAABkb2NQcm9wcy9jb3JlLnhtbFBLAQIUAAoAAAAIAGs8Rl0eKelacAIAAGQMAAASAAAAAAAAAAAAAAAAAGYcAAB3b3JkL251bWJlcmluZy54bWxQSwECFAAKAAAAAABrPEZdAAAAAAAAAAAAAAAABgAAAAAAAAAAABAAAAAGHwAAX3JlbHMvUEsBAhQACgAAAAgAazxGXR+jkpbmAAAAzgIAAAsAAAAAAAAAAAAAAAAAKh8AAF9yZWxzLy5yZWxzUEsBAhQACgAAAAgAazxGXaCOjqWaAQAAOAgAABMAAAAAAAAAAAAAAAAAOSAAAFtDb250ZW50X1R5cGVzXS54bWxQSwECFAAKAAAACABrPEZdWHnbIpIAAADkAAAAEwAAAAAAAAAAAAAAAAAEIgAAZG9jUHJvcHMvY3VzdG9tLnhtbFBLAQIUAAoAAAAIAGs8Rl3i/J3akwAAAOYAAAAQAAAAAAAAAAAAAAAAAMciAABkb2NQcm9wcy9hcHAueG1sUEsBAhQACgAAAAgAazxGXZyJyZHOAQAArQYAABIAAAAAAAAAAAAAAAAAiCMAAHdvcmQvZm9vdG5vdGVzLnhtbFBLAQIUAAoAAAAIAGs8Rl3Sd/y3bQAAAHsAAAAdAAAAAAAAAAAAAAAAAIYlAAB3b3JkL19yZWxzL2Zvb3Rub3Rlcy54bWwucmVsc1BLAQIUAAoAAAAIAGs8Rl0/So6NwQEAAJIGAAARAAAAAAAAAAAAAAAAAC4mAAB3b3JkL2VuZG5vdGVzLnhtbFBLAQIUAAoAAAAIAGs8Rl3Sd/y3bQAAAHsAAAAcAAAAAAAAAAAAAAAAAB4oAAB3b3JkL19yZWxzL2VuZG5vdGVzLnhtbC5yZWxzUEsBAhQACgAAAAgAazxGXU2fysqhAQAAcwUAABEAAAAAAAAAAAAAAAAAxSgAAHdvcmQvc2V0dGluZ3MueG1sUEsBAhQACgAAAAgAazxGXYuGOcTFAQAAxggAABEAAAAAAAAAAAAAAAAAlSoAAHdvcmQvY29tbWVudHMueG1sUEsBAhQACgAAAAgAazxGXdJ3/LdtAAAAewAAABwAAAAAAAAAAAAAAAAAiSwAAHdvcmQvX3JlbHMvY29tbWVudHMueG1sLnJlbHNQSwECFAAKAAAACABrPEZdY+1e1h0BAABDAwAAEgAAAAAAAAAAAAAAAAAwLQAAd29yZC9mb250VGFibGUueG1sUEsBAhQACgAAAAgAazxGXdJ3/LdtAAAAewAAAB0AAAAAAAAAAAAAAAAAfS4AAHdvcmQvX3JlbHMvZm9udFRhYmxlLnhtbC5yZWxzUEsFBgAAAAAWABYAfAUAACUvAAAAAA==";
+document.getElementById('res-download').addEventListener('click', async ()=>{
+  const okEl = document.getElementById('res-download-ok');
+  try{
+    const downloads = await claude.use('downloads');
+    if(!downloads){ okEl.textContent='Không khả dụng ở đây — hãy mở lại file Word đã gửi trong hội thoại.'; okEl.style.display='block'; return; }
+    const bytes = Uint8Array.from(atob(DOCX_BASE64), c=>c.charCodeAt(0));
+    const res = await downloads.save({ filename: 'De-cuong-on-thi-giua-ky-Pali.docx', data: bytes });
+    if(res.status==='saved'){ okEl.textContent='Đã lưu.'; okEl.style.display='block'; }
+  }catch(e){
+    okEl.textContent = e && e.code==='declined' ? '' : 'Không tải được — thử lại hoặc dùng file Word đã gửi trong hội thoại.';
+    okEl.style.display = okEl.textContent ? 'block' : 'none';
+  }
+});
+
+/* ---------------- Vocab data ---------------- */
+const VOCAB = [
+ {pali:"yo…so", pos:"đại từ liên hệ / chỉ định", vi:"người nào … thì người đó", en:"who…he / whoever", root:"'ya' biến cách theo khuôn 'so' (nam), 'taṃ' (trung), 'sā' (nữ).", tag:"Ngữ pháp cốt lõi"},
+ {pali:"bhojanaṃ", pos:"danh từ, trung tính", vi:"thức ăn", en:"food", root:"√bhuj (ăn) + ana", tag:"Bài tập 8 cách"},
+ {pali:"āyu", pos:"danh từ, nam tính", vi:"tuổi thọ", en:"longevity", root:"", tag:"Bài tập 8 cách"},
+ {pali:"vihāra", pos:"danh từ, nam tính", vi:"tịnh xá, tu viện", en:"monastery", root:"vi + √har (mang đi)", tag:"Bài tập 8 cách"},
+ {pali:"cīvara", pos:"danh từ, trung tính", vi:"y phục (của tu sĩ)", en:"robe", root:"", tag:"Bài tập 8 cách"},
+ {pali:"ācariya", pos:"danh từ, nam tính", vi:"thầy, giáo thọ", en:"teacher", root:"", tag:"Bài tập 8 cách"},
+ {pali:"sisso", pos:"danh từ, nam tính", vi:"học trò", en:"pupil, disciple", root:"", tag:"Bài tập 8 cách"},
+ {pali:"namo", pos:"bất biến từ", vi:"kính lễ", en:"homage", root:"", tag:"Danh hiệu Phật"},
+ {pali:"bhagavā", pos:"tính từ/danh từ", vi:"Đức Thế Tôn", en:"Blessed One", root:"", tag:"Danh hiệu Phật"},
+ {pali:"arahaṃ", pos:"tính từ", vi:"bậc A-la-hán, Ứng Cúng", en:"worthy one", root:"", tag:"Danh hiệu Phật"},
+ {pali:"sammāsambuddho", pos:"danh từ (pp)", vi:"bậc Chánh Đẳng Giác", en:"Fully Enlightened One", root:"sammā (đầy đủ) + saṃ + √budh (biết, tỉnh thức) + ta", tag:"Danh hiệu Phật"},
+ {pali:"bujjhati", pos:"động từ", vi:"tỉnh thức, hiểu biết", en:"wakes up, understands", root:"√budh — gốc của cả 'Buddha' và 'bodhi'", tag:"Danh hiệu Phật"},
+ {pali:"vijjācaraṇasampanno", pos:"tính từ ghép", vi:"Minh Hạnh Túc", en:"endowed with knowledge & conduct", root:"vijjā (trí tuệ, √vid) + caraṇa (đức hạnh, √car) + sampanna (thành tựu trọn vẹn, saṃ+√pad+na)", tag:"Danh hiệu Phật"},
+ {pali:"sugato", pos:"tính từ (pp)", vi:"bậc Thiện Thệ", en:"well-gone one", root:"su (khéo, tốt) + √gam (đi) + ta", tag:"Danh hiệu Phật"},
+ {pali:"lokavidū", pos:"tính từ", vi:"Thế Gian Giải", en:"knower of the world", root:"loka (thế gian) + vidū (hiểu biết)", tag:"Danh hiệu Phật"},
+ {pali:"anuttaro purisadammasārathi", pos:"danh từ ghép", vi:"Vô Thượng Sĩ, Điều Ngự Trượng Phu", en:"unsurpassed guide of persons to be tamed", root:"na+uttara (vô thượng) + purisa (người) + damma (đáng thuần hoá, √dam+ya) + sārathi (người dẫn đường)", tag:"Danh hiệu Phật"},
+ {pali:"satthā devamanussānaṃ", pos:"danh từ", vi:"Đạo Sư của trời và người", en:"teacher of gods and men", root:"deva (chư thiên) + manussa (loài người), sở thuộc cách số nhiều", tag:"Danh hiệu Phật"},
+ {pali:"atīta / anāgata / paccuppanna", pos:"tính từ", vi:"quá khứ / vị lai / hiện tại", en:"past / future / present", root:"", tag:"Tam thời"},
+ {pali:"vandati", pos:"động từ", vi:"đảnh lễ, kính bái", en:"venerates, pays homage", root:"", tag:"Lễ bái Tam Bảo"},
+ {pali:"saraṇa", pos:"danh từ, trung tính", vi:"nơi nương tựa, quy y", en:"refuge", root:"", tag:"Lễ bái Tam Bảo"},
+ {pali:"jayamaṅgalaṃ", pos:"danh từ ghép, trung tính", vi:"sự phước lành, thắng lợi", en:"blessing of victory/success", root:"jaya (thắng lợi) + maṅgala (điềm lành)", tag:"Lễ bái Tam Bảo"},
+ {pali:"uttamaṅgena", pos:"danh từ ghép, sử dụng cách", vi:"bằng cái đầu (phần cao nhất)", en:"with the head (highest part)", root:"uttama (cao nhất) + aṅga (bộ phận)", tag:"Lễ bái Tam Bảo"},
+ {pali:"pādapaṃsuṃ", pos:"danh từ", vi:"bụi dưới chân", en:"dust of the feet", root:"pāda (chân) + paṃsu (bụi)", tag:"Lễ bái Tam Bảo"},
+ {pali:"khamatu", pos:"động từ, mệnh lệnh cách", vi:"xin hãy tha thứ", en:"may forgive", root:"√kham", tag:"Lễ bái Tam Bảo"},
+ {pali:"jīvitapariyantaṃ", pos:"trạng từ/tính từ ghép", vi:"trọn đời", en:"for the entire life", root:"jīvita (đời sống) + pariyanta (giới hạn, cuối)", tag:"Lễ bái Tam Bảo"},
+ {pali:"svākkhāto", pos:"tính từ (pp)", vi:"đã khéo thuyết giảng", en:"well-expounded", root:"su (khéo) + ākkhāta (pp của ākkhāti: tuyên thuyết)", tag:"Ân đức Pháp"},
+ {pali:"sandiṭṭhiko", pos:"tính từ", vi:"thiết thực hiện tại", en:"directly visible", root:"saṃ + √dis (thấy) + ika", tag:"Ân đức Pháp"},
+ {pali:"akāliko", pos:"tính từ", vi:"vượt thời gian, có kết quả ngay", en:"timeless", root:"na + kāla (thời gian) + ika", tag:"Ân đức Pháp"},
+ {pali:"ehipassiko", pos:"tính từ", vi:"mời đến mà thấy", en:"inviting to come and see", root:"ehi (hãy đến) + passa (hãy thấy) + ika", tag:"Ân đức Pháp"},
+ {pali:"opanayiko", pos:"tính từ", vi:"dẫn đến (Niết-bàn)", en:"leading onward", root:"upanaya (dẫn tới) + ika", tag:"Ân đức Pháp"},
+ {pali:"paccattaṃ veditabbo", pos:"trạng từ + phân từ tương lai", vi:"nên tự mình chứng nghiệm", en:"to be personally experienced", root:"veditabba = fut. passive participle của vedeti/vindati", tag:"Ân đức Pháp"},
+ {pali:"supaṭipanno", pos:"tính từ (pp)", vi:"khéo thực hành (thiện hạnh)", en:"well-practiced", root:"su + paṭipanna (pp của paṭipajjati)", tag:"Ân đức Tăng"},
+ {pali:"sāvakasaṅgho", pos:"danh từ ghép", vi:"chúng Tăng đệ tử (Thanh văn)", en:"community of disciples", root:"sāvaka (đệ tử nghe pháp) + saṅgha (đoàn thể)", tag:"Ân đức Tăng"},
+ {pali:"āhuneyyo / dakkhiṇeyyo / añjalikaraṇīyo", pos:"phân từ tương lai (fut.p)", vi:"đáng cúng dường / đáng nhận đồ cúng / đáng chắp tay lễ bái", en:"worthy of offerings / gifts / veneration", root:"hậu tố -eyya, -aṇiya biểu thị 'đáng được'", tag:"Ân đức Tăng"},
+ {pali:"anuttaraṃ puññakkhettaṃ lokassa", pos:"danh từ ghép", vi:"ruộng phước vô thượng của thế gian", en:"the supreme field of merit for the world", root:"puñña (phước) + khetta (ruộng)", tag:"Ân đức Tăng"},
+ {pali:"mettā", pos:"danh từ, nữ tính", vi:"tâm từ", en:"loving-kindness", root:"", tag:"Kinh Từ Bi"},
+ {pali:"avera / abyāpajjha / anīgha", pos:"tính từ", vi:"không oán thù / thoát khổ tâm / thoát khổ", en:"free from enmity / ill-will / affliction", root:"na (không) + vera/byāpajjha/īgha", tag:"Kinh Từ Bi"},
+ {pali:"sukhī attānaṃ pariharāmi", pos:"cụm động từ", vi:"con giữ gìn thân tâm được an lạc", en:"may I keep myself happy", root:"pariharati = pari + √har (mang, giữ)", tag:"Kinh Từ Bi"},
+ {pali:"sabbe sattā sukhitā hontu", pos:"câu chúc nguyện", vi:"mong tất cả chúng sanh được an vui", en:"may all beings be happy", root:"sattā = chúng sanh (√as, tồn tại)", tag:"Kinh Từ Bi"},
+ {pali:"dāyako / dānapati", pos:"danh từ, nam tính", vi:"thí chủ / thí chủ (chính, hào phóng)", en:"donor / munificent giver", root:"√dā (cho) + aka; dāna (sự cho) + pati (chủ)", tag:"Kinh Đại Tướng Sīha"},
+ {pali:"piyo … manāpo", pos:"tính từ", vi:"được yêu mến … ưa thích", en:"dear … agreeable", root:"", tag:"Kinh Đại Tướng Sīha"},
+ {pali:"santo sappurisā", pos:"danh từ/tính từ", vi:"bậc thiện, bậc chân nhân", en:"noble and good persons", root:"santa (√sam, tĩnh lặng) + sappurisa (su+purisa)", tag:"Kinh Đại Tướng Sīha"},
+ {pali:"kittisaddo abbhuggacchati", pos:"cụm động từ", vi:"tiếng đồn tốt đẹp lan truyền", en:"a good reputation spreads", root:"kitti (danh tiếng) + sadda (âm thanh, tiếng); abbhuggacchati = abhi+u+√gam", tag:"Kinh Đại Tướng Sīha"},
+ {pali:"visārado…amaṅkubhūto", pos:"tính từ", vi:"tự tin … không do dự hoang mang", en:"confident … undisturbed", root:"a + maṅku (bối rối) + bhūta", tag:"Kinh Đại Tướng Sīha"},
+ {pali:"kāyassa bhedā paraṃ maraṇā", pos:"cụm thành ngữ", vi:"sau khi thân hoại mạng chung", en:"after the breakup of the body, after death", root:"kāya (thân) + bheda (tan rã) — xuất xứ cách", tag:"Kinh Đại Tướng Sīha"},
+ {pali:"sugatiṃ saggaṃ lokaṃ upapajjati", pos:"cụm động từ", vi:"sanh lên cõi lành, cõi trời", en:"is reborn in a good destination, a heavenly world", root:"upapajjati = upa + √pad (sanh khởi)", tag:"Kinh Đại Tướng Sīha"},
+ {pali:"sabbapāpassa akaraṇaṃ", pos:"cụm danh từ", vi:"không làm mọi điều ác", en:"not doing any evil", root:"a (không) + karaṇa (sự làm, √kar)", tag:"Pháp Cú 183"},
+ {pali:"kusalassūpasampadā", pos:"cụm danh từ (liên âm)", vi:"thành tựu các hạnh lành", en:"cultivating the good", root:"kusala (thiện) + upasampadā (sự thành tựu)", tag:"Pháp Cú 183"},
+ {pali:"sacittapariyodapanaṃ", pos:"danh từ ghép, trung tính", vi:"tự thanh lọc tâm ý", en:"purifying one's own mind", root:"sa (của mình) + citta (tâm) + pariyodapana (sự thanh lọc)", tag:"Pháp Cú 183"},
+ {pali:"etaṃ buddhāna sāsanaṃ", pos:"cụm danh từ", vi:"đây là lời chư Phật dạy", en:"this is the teaching of the Buddhas", root:"sāsana = lời dạy, giáo huấn", tag:"Pháp Cú 183"},
+ {pali:"lokahitāya / lokasukhāya", pos:"danh từ, chỉ định cách", vi:"vì lợi lạc / vì hạnh phúc cho thế gian", en:"for the welfare / happiness of the world", root:"loka (thế gian) + hita/sukha, đuôi -āya chỉ mục đích", tag:"7 cách đảnh lễ Phật"},
+ {pali:"bodhāya / samathāya / damathāya / taraṇāya / nibbānāya", pos:"danh từ, chỉ định cách", vi:"vì giác ngộ / tịch tĩnh / điều phục / vượt qua / Niết-bàn", en:"for enlightenment / tranquility / taming / crossing over / Nibbāna", root:"tất cả đều mang đuôi -āya (chỉ định cách, chỉ mục đích)", tag:"7 cách đảnh lễ Phật"},
+ {pali:"yamhā dhammaṃ vijāneyya", pos:"mệnh đề phụ", vi:"từ ai mà người ta hiểu được Pháp", en:"from whom one might learn the Dhamma", root:"yamhā = xuất xứ cách của 'ya'; vijāneyya = khả năng cách của vijānāti", tag:"Pháp Cú 392"},
+ {pali:"sakkaccaṃ taṃ namasseyya", pos:"mệnh đề chính", vi:"nên kính lễ người ấy một cách cẩn trọng", en:"one should respectfully venerate him", root:"namasseyya = khả năng cách của namassati", tag:"Pháp Cú 392"},
+ {pali:"aggihuttaṃva brāhmaṇo", pos:"cụm so sánh", vi:"như vị Bà-la-môn tôn thờ lửa thiêng", en:"as a brahmin does the sacred fire", root:"aggihutta (lễ tế lửa) + iva/va (như là); chủ từ so sánh luôn ở chủ cách", tag:"Pháp Cú 392"},
+ {pali:"yāni kānici bhayāni uppajjanti", pos:"cụm đại từ bất định", vi:"phàm có sự sợ hãi nào khởi lên", en:"whatever fears arise", root:"yāni…kānici = 'ya' + đại từ bất định 'kiñci' (bất cứ… nào)", tag:"Bhaya Sutta"},
+ {pali:"bālato…no paṇḍitato", pos:"danh từ, xuất xứ cách", vi:"từ người ngu… không phải từ người trí", en:"from the fool… not from the wise", root:"bāla / paṇḍita + đuôi -to (biến thể của xuất xứ cách)", tag:"Bhaya Sutta"},
+ {pali:"upaddavā / upasaggā", pos:"danh từ, nam tính", vi:"nguy hiểm / tai họa", en:"dangers / misfortunes", root:"", tag:"Bhaya Sutta"},
+ {pali:"cattāro satipaṭṭhānā viraddhā", pos:"cụm chủ ngữ + pp", vi:"bốn niệm xứ bị thối thất", en:"the four foundations of mindfulness are missed", root:"viraddha = pp của virajjhati (bỏ lỡ, thối thất)", tag:"Viraddha Sutta"},
+ {pali:"ariyo maggo…dukkhakkhayagāmī", pos:"cụm danh từ + tính từ ghép", vi:"Thánh đạo đưa đến đoạn diệt khổ đau", en:"the noble path leading to the end of suffering", root:"dukkha (khổ) + khaya (đoạn diệt) + gāmī (đưa đến, √gam+in)", tag:"Viraddha Sutta"},
+ {pali:"ye dhammā hetuppabhavā", pos:"cụm chủ ngữ", vi:"những pháp nào sanh khởi từ nhân", en:"whatever phenomena arise from a cause", root:"hetu (nhân) + pabhava (sanh ra từ, nguồn gốc)", tag:"Kệ Duyên Khởi"},
+ {pali:"tathāgato āha", pos:"cụm chủ vị", vi:"Như Lai đã giảng", en:"the Tathāgata has declared", root:"tathāgata = tathā (như vậy) + gata/āgata (đã đi/đến)", tag:"Kệ Duyên Khởi"},
+ {pali:"tesañca yo nirodho", pos:"cụm đại từ", vi:"và sự đoạn diệt của chúng", en:"and also their cessation", root:"nirodha (sự diệt, ni+√rudh)", tag:"Kệ Duyên Khởi"},
+ {pali:"evaṃvādī mahāsamaṇo", pos:"danh từ ghép", vi:"đại Sa-môn đã nói như vậy", en:"thus proclaims the Great Ascetic", root:"evaṃ (như vậy) + vādī (người nói, √vad+in)", tag:"Kệ Duyên Khởi"},
+ {pali:"upasaṅkamati", pos:"động từ", vi:"đi đến gần, đến gặp", en:"approaches", root:"upa + saṃ + √kam (bước đi)", tag:"Từ vựng động từ chung"},
+ {pali:"abhivādeti", pos:"động từ", vi:"đảnh lễ", en:"pays homage", root:"abhi + √vad (nói/chào) + ṇe (causative)", tag:"Từ vựng động từ chung"},
+ {pali:"nisīdati", pos:"động từ", vi:"ngồi xuống", en:"sits", root:"ni + √sad (ngồi)", tag:"Từ vựng động từ chung"},
+ {pali:"deseti", pos:"động từ", vi:"thuyết giảng", en:"preaches, teaches", root:"√dis (chỉ ra) + causative", tag:"Từ vựng động từ chung"},
+ {pali:"uppajjati", pos:"động từ", vi:"xuất hiện, sanh khởi", en:"arises", root:"u + √pad (sanh)", tag:"Từ vựng động từ chung"},
+ {pali:"paṭipajjati", pos:"động từ", vi:"thực hành, tiến hành", en:"practices", root:"paṭi + √pad", tag:"Từ vựng động từ chung"},
+];
+
+const TAGS = ["Tất cả", ...Array.from(new Set(VOCAB.map(v=>v.tag)))];
+const filterSel = document.getElementById('vocab-filter');
+TAGS.forEach(t=>{
+  const o = document.createElement('option'); o.value=t; o.textContent=t; filterSel.appendChild(o);
+});
+
+let deck = [];
+let idx = 0;
+const STORAGE_KEY = 'pali_vocab_progress_v1';
+function loadProgress(){
+  try{
+    const raw = localStorage.getItem(STORAGE_KEY);
+    return raw ? JSON.parse(raw) : {};
+  }catch(e){ return {}; }
+}
+function saveProgress(p){
+  try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(p)); }catch(e){}
+}
+let progress = loadProgress();
+
+function buildDeck(){
+  const tag = filterSel.value;
+  deck = VOCAB.filter(v => tag === "Tất cả" || v.tag === tag);
+  idx = 0;
+  renderCard();
+}
+
+function shuffleDeck(){
+  for(let i=deck.length-1;i>0;i--){
+    const j = Math.floor(Math.random()*(i+1));
+    [deck[i],deck[j]]=[deck[j],deck[i]];
+  }
+  idx = 0;
+  renderCard();
+}
+
+const cardEl = document.getElementById('flashcard');
+function renderCard(){
+  const doneMsg = document.getElementById('done-msg');
+  const wrap = document.querySelector('.deck-wrap .flashcard');
+  if(deck.length === 0){
+    doneMsg.style.display='block';
+    wrap.style.display='none';
+    updateStat();
+    return;
+  }
+  if(idx >= deck.length) idx = 0;
+  if(idx < 0) idx = deck.length -1;
+  doneMsg.style.display='none';
+  wrap.style.display='block';
+  const item = deck[idx];
+  cardEl.classList.remove('flipped');
+  document.getElementById('card-tag').textContent = item.tag;
+  document.getElementById('card-pali').textContent = item.pali;
+  document.getElementById('card-pos').textContent = item.pos;
+  document.getElementById('card-vi').textContent = item.vi;
+  document.getElementById('card-en').textContent = item.en;
+  document.getElementById('card-root').textContent = item.root ? ("Gốc từ: " + item.root) : "";
+  document.getElementById('progress-fill').style.width = ((idx+1)/deck.length*100)+'%';
+  updateStat();
+}
+function updateStat(){
+  const known = Object.values(progress).filter(v=>v==='know').length;
+  document.getElementById('vocab-stat').textContent = `${known}/${VOCAB.length} đã thuộc · thẻ ${deck.length? (idx+1):0}/${deck.length}`;
+}
+
+cardEl.addEventListener('click', ()=> cardEl.classList.toggle('flipped'));
+cardEl.addEventListener('keydown', (e)=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); cardEl.classList.toggle('flipped'); } });
+
+document.getElementById('next-card').addEventListener('click', ()=>{ idx++; renderCard(); });
+document.getElementById('prev-card').addEventListener('click', ()=>{ idx--; renderCard(); });
+document.getElementById('mark-know').addEventListener('click', ()=>{
+  if(deck[idx]){ progress[deck[idx].pali]='know'; saveProgress(progress); }
+  idx++; renderCard();
+});
+document.getElementById('mark-review').addEventListener('click', ()=>{
+  if(deck[idx]){ progress[deck[idx].pali]='review'; saveProgress(progress); }
+  idx++; renderCard();
+});
+document.getElementById('vocab-shuffle').addEventListener('click', shuffleDeck);
+document.getElementById('vocab-reset').addEventListener('click', ()=>{
+  progress = {}; saveProgress(progress); updateStat();
+});
+filterSel.addEventListener('change', buildDeck);
+
+buildDeck();
+
+/* ---------------- Texts ---------------- */
+const TEXTS = {
+  "Pháp Cú 183": [
+    {p:"Sabbapāpassa akaraṇaṃ, kusalassūpasampadā;", v:"Không làm mọi điều ác, thành tựu các hạnh lành,", note:"akaraṇaṃ = a (không) + karaṇa (sự làm); kusalassūpasampadā là liên âm của kusalassa + upasampadā."},
+    {p:"Sacittapariyodapanaṃ, etaṃ Buddhāna sāsanaṃ.", v:"Tự thanh lọc tâm ý — đây là lời chư Phật dạy.", note:"sacittapariyodapanaṃ = sa (của mình) + citta (tâm) + pariyodapana (thanh lọc)."}
+  ],
+  "Pháp Cú 392": [
+    {p:"Yamhā dhammaṃ vijāneyya, sammāsambuddhadesitaṃ;", v:"Từ ai mà người ta hiểu được Giáo pháp, do bậc Chánh Đẳng Giác thuyết giảng,", note:"Yamhā = xuất xứ cách của 'ya'. vijāneyya = khả năng cách (optative) của vijānāti."},
+    {p:"Sakkaccaṃ taṃ namasseyya, aggihuttaṃva brāhmaṇo.", v:"Người ấy nên được kính lễ một cách cẩn trọng, như vị Bà-la-môn tôn thờ lửa thiêng.", note:"Câu có 2 mệnh đề: mệnh đề phụ (Yamhā…) và mệnh đề chính (Sakkaccaṃ…), cùng dùng optative ngôi 3 số ít với chủ ngữ ngầm hiểu."}
+  ],
+  "7 cách đảnh lễ Phật": [
+    {p:"Buddho lokahitāya uppajjati. Buddhaṃ namassāmi.", v:"Đức Phật xuất hiện vì sự lợi lạc cho thế gian. Con đảnh lễ Đức Phật.", note:"lokahitāya = chỉ định cách chỉ mục đích (-āya)."},
+    {p:"Buddho bodhāya dhammaṃ deseti. Buddhaṃ namassāmi.", v:"Đức Phật thuyết pháp để giác ngộ. Con đảnh lễ Đức Phật.", note:""},
+    {p:"Buddho samathāya dhammaṃ deseti. Buddhaṃ namassāmi.", v:"Đức Phật thuyết pháp để tịch tĩnh. Con đảnh lễ Đức Phật.", note:""},
+    {p:"Buddho damathāya dhammaṃ deseti. Buddhaṃ namassāmi.", v:"Đức Phật thuyết pháp để điều phục. Con đảnh lễ Đức Phật.", note:""},
+    {p:"Buddho taraṇāya dhammaṃ deseti. Buddhaṃ namassāmi.", v:"Đức Phật thuyết pháp để vượt qua (luân hồi). Con đảnh lễ Đức Phật.", note:""},
+    {p:"Buddho nibbānāya dhammaṃ deseti. Buddhaṃ namassāmi.", v:"Đức Phật thuyết pháp để chứng Niết-bàn. Con đảnh lễ Đức Phật.", note:"Cả 7 câu lặp cấu trúc [danh từ mục đích + āya] + Buddhaṃ namassāmi như điệp khúc."}
+  ],
+  "Kinh Lễ Bái Tam Bảo": [
+    {p:"Itipi so bhagavā arahaṃ sammāsambuddho vijjācaraṇasampanno sugato lokavidū anuttaro purisadammasārathi satthā devamanussānaṃ buddho bhagavā.", v:"Đức Thế Tôn được biết như là bậc Ứng Cúng, Chánh Biến Tri, Minh Hạnh Túc, Thiện Thệ, Thế Gian Giải, Vô Thượng Sĩ, Điều Ngự Trượng Phu, Thiên Nhân Sư, Phật, Thế Tôn.", note:"Chuỗi 9 danh hiệu (Ân đức Phật) — mỗi danh hiệu là một tính từ ghép có gốc riêng, xem tab Từ vựng."},
+    {p:"Svākkhāto bhagavatā dhammo, sandiṭṭhiko, akāliko, ehipassiko, opanayiko, paccattaṃ veditabbo viññūhī ti.", v:"Pháp được Thế Tôn khéo giảng, thiết thực hiện tại, vượt thời gian, mời đến mà thấy, hướng thượng Niết-bàn, người trí tự mình chứng nghiệm.", note:"Chuỗi 6 Ân đức Pháp."},
+    {p:"Supaṭipanno bhagavato sāvakasaṅgho… esa bhagavato sāvakasaṅgho āhuneyyo pāhuneyyo dakkhiṇeyyo añjalikaraṇīyo anuttaraṃ puññakkhettaṃ lokassa.", v:"Chúng Thanh văn đệ tử của Thế Tôn là bậc khéo hành trì… là ruộng phước vô thượng của thế gian.", note:"Ân đức Tăng — 4 fut.participle liên tiếp: đáng cúng dường / đáng tiếp đón / đáng nhận đồ cúng / đáng chắp tay lễ."},
+    {p:"Ye ca buddhā atītā ca, ye ca buddhā anāgatā, paccuppannā ca ye buddhā, ahaṃ vandāmi sabbadā.", v:"Chư Phật quá khứ, vị lai, hiện tại — con luôn hết lòng đảnh lễ.", note:"'Ye…ca' lặp 3 lần cho 3 thời — mẫu câu này lặp lại y hệt cho Pháp (dhammā) và Tăng (saṅghā) ở các đoạn sau."},
+    {p:"Uttamaṅgena vandehaṃ pādapaṃsuṃ varuttamaṃ, buddhe yo khalito doso buddho khamatu taṃ mamaṃ. Buddhaṃ jīvitapariyantaṃ saraṇaṃ gacchāmi.", v:"Con đem hết lòng cúi đầu làm lễ dưới chân Đức Phật; lỗi lầm nào con đã vô ý phạm, cúi xin Phật xá cho. Trọn đời con xin quy y Phật.", note:"Mẫu câu 'Uttamaṅgena vandehaṃ X-ñca…khamatu taṃ mamaṃ' lặp lại cho cả Pháp và Tăng."}
+  ],
+  "Kinh Từ Bi (Mettā)": [
+    {p:"Ahaṃ avero homi, abyāpajjho homi, anīgho homi, sukhī attānaṃ pariharāmi.", v:"Mong cho tôi không oán thù, thoát khổ tâm, thoát khổ thân, giữ gìn thân tâm an lạc.", note:"Bộ ba avera / abyāpajjha / anīgha đều dùng tiền tố phủ định 'a-/an-' + danh từ chỉ trạng thái khổ."},
+    {p:"Sabbe sattā, sabbe pāṇā, sabbe bhūtā… averā hontu, abyāpajjhā hontu, anīghā hontu, sukhī attānaṃ pariharantu.", v:"Mong tất cả chúng sanh, chúng sanh có hô hấp, các loài sinh vật… không oán thù, thoát khổ, an lạc.", note:"Rải tâm Từ mở rộng dần: bản thân → thầy tổ, cha mẹ → tất cả chúng sanh khắp 10 phương."},
+    {p:"Idaṃ no puñña-bhāgaṃ sabbasattānaṃ dema. Sabbe sattā sukhitā hontu.", v:"Chúng con xin hồi hướng phước báu đến tất cả chúng sanh. Mong tất cả chúng sanh an vui.", note:"Câu hồi hướng kết thúc bài kinh."}
+  ],
+  "Kinh Đại Tướng Sīha": [
+    {p:"Dāyako, sīha, dānapati bahuno janassa piyo hoti manāpo.", v:"Người bố thí, này Sīha, người thí chủ được nhiều người ái mộ và ưa thích.", note:"Câu này lặp lại 4 lần với 4 quả bố thí thiết thực hiện tại khác nhau (được yêu mến / được bậc thiện thân cận / được tiếng tốt / tự tin giữa hội chúng)."},
+    {p:"Dāyako dānapati kāyassa bhedā paraṃ maraṇā sugatiṃ saggaṃ lokaṃ upapajjati.", v:"Người bố thí, sau khi thân hoại mạng chung, sanh lên cõi lành, cõi trời.", note:"Đây là quả bố thí thuộc về đời sau (samparāyika), khác với 4 quả thiết thực hiện tại (sandiṭṭhika) ở trên — tướng quân Sīha nói ông tin điều này bằng đức tin, không phải tự mình kiểm chứng được."}
+  ],
+  "Bhaya Sutta": [
+    {p:"Yāni kānici, bhikkhave, bhayāni uppajjanti sabbāni tāni bālato uppajjanti, no paṇḍitato.", v:"Phàm có sự sợ hãi nào khởi lên, này các Tỷ-kheo, tất cả đều khởi từ người ngu, không phải từ người trí.", note:"'Yāni…kānici' là mẫu câu nối giữa đại từ liên hệ (ya) và đại từ bất định (kiñci) — chuẩn bị cho Bài 21."},
+    {p:"Ye keci upaddavā uppajjanti sabbe te bālato uppajjanti, no paṇḍitato.", v:"Phàm có những nguy hiểm nào khởi lên, tất cả đều khởi từ người ngu.", note:"Cấu trúc lặp lại với 'upasaggā' (tai họa) ở câu tiếp theo."}
+  ],
+  "Viraddha Sutta": [
+    {p:"Yesaṃ kesañci, bhikkhave, cattāro satipaṭṭhānā viraddhā, viraddho tesaṃ ariyo maggo sammā dukkhakkhayagāmī.", v:"Với những ai bốn niệm xứ bị thối thất, đối với người ấy, Thánh đạo đưa đến đoạn diệt khổ đau cũng bị thối thất.", note:"Yesaṃ kesañci = sở thuộc cách số nhiều của 'ya' + đại từ bất định 'kici'."},
+    {p:"Yesaṃ kesañci, bhikkhave, cattāro satipaṭṭhānā āraddhā, āraddho tesaṃ ariyo maggo sammā dukkhakkhayagāmī.", v:"Với những ai bốn niệm xứ được thực hành, Thánh đạo ấy cũng được thực hành.", note:"Câu đối xứng — chỉ đổi viraddha (bỏ lỡ) thành āraddha (thực hành, thành tựu)."}
+  ],
+  "Kệ Duyên Khởi": [
+    {p:"Ye dhammā hetuppabhavā, tesaṃ hetuṃ tathāgato āha;", v:"Pháp sanh lên do nhân, Như Lai giảng nhân ấy,", note:"Bài kệ nổi tiếng trong Vinaya Mahāvagga, thường khắc trên tượng Phật cổ."},
+    {p:"Tesañca yo nirodho, evaṃvādī mahāsamaṇo.", v:"Nhân diệt thời Pháp diệt, đại Sa-môn nói vậy.", note:"'Yo nirodho' — đại từ liên hệ 'ya' làm chủ ngữ cho danh từ trừu tượng 'nirodha' (sự diệt)."}
+  ],
+};
+
+const textNav = document.getElementById('text-nav');
+const textContent = document.getElementById('text-content');
+Object.keys(TEXTS).forEach((key,i)=>{
+  const btn = document.createElement('button');
+  btn.textContent = key;
+  if(i===0) btn.classList.add('active');
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('#text-nav button').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    renderText(key);
+  });
+  textNav.appendChild(btn);
+});
+function renderText(key){
+  const items = TEXTS[key];
+  textContent.innerHTML = items.map(it => `
+    <div class="verse-item">
+      <div class="p pali">${it.p}</div>
+      <div class="v">${it.v}</div>
+      ${it.note ? `<details><summary>Phân tích ngữ pháp</summary><div>${it.note}</div></details>` : ''}
+    </div>
+  `).join('');
+}
+renderText(Object.keys(TEXTS)[0]);
+
+/* ---------------- Lecture exercises (Bài 20) ---------------- */
+const EXERCISES = [
+  {p:"Yo bhojanaṃ deti, so āyuṃ labhati.", v:"Người nào cho thức ăn, người ấy nhận được tuổi thọ.", g:"Cách 1 — Chủ cách"},
+  {p:"Yaṃ vihāraṃ ahaṃ gacchāmi, tvaṃ pi taṃ gacchasi.", v:"Tôi đi đến tịnh xá nào, bạn cũng đi đến (tịnh xá) đó.", g:"Cách 2 — Đối cách"},
+  {p:"Yena saddhiṃ ahaṃ vihāraṃ gacchāmi, tena tvaṃ gacchasi.", v:"Tôi đi đến tịnh xá cùng với người nào, bạn cũng đi cùng với người ấy.", g:"Cách 3 — Sử dụng cách"},
+  {p:"Yassa ahaṃ cīvaraṃ demi, tassa tvaṃ cīvaraṃ desi.", v:"Tôi cho y phục đến người nào, bạn cho y phục đến người ấy.", g:"Cách 4 — Chỉ định cách"},
+  {p:"Yamhā ahaṃ dhammaṃ uggaṇhāmi, tamhā ahaṃ cīvaraṃ labhāmi.", v:"Tôi học Giáo pháp từ người nào, tôi nhận y phục từ người ấy.", g:"Cách 5 — Xuất xứ cách"},
+  {p:"Yassa ācariyo vihāre viharati, tassa ahaṃ sisso.", v:"Vị thầy của người nào trú ngụ ở tịnh xá, tôi là học trò của người ấy.", g:"Cách 6 — Sở thuộc cách"},
+  {p:"Yasmiṃ vihāre so viharati, ahaṃ pi tasmiṃ viharāmi.", v:"Người ấy trú ngụ ở tịnh xá nào, tôi cũng trú ngụ ở tịnh xá đó.", g:"Cách 7 — Định sở cách"},
+];
+document.getElementById('lecture-exercises').innerHTML = EXERCISES.map((ex,i)=>`
+  <div class="verse-item">
+    <div class="p pali">${i+1}. ${ex.p}</div>
+    <details>
+      <summary>Xem đáp án (${ex.g})</summary>
+      <div>${ex.v}</div>
+    </details>
+  </div>
+`).join('');
+</script>
+</body>
+</html>
